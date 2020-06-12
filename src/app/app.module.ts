@@ -12,21 +12,9 @@ import {AppComponent} from './app.component';
 import {AppRoutes} from './app.routing';
 
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
-import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import {GoogleAuthService} from './shared/services/google-auth.service';
 import {JsLoaderService} from './shared/services/js-loader.service';
 
-const config = new AuthServiceConfig([
-    {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("603367704479-vhsav8ukrpq480itan79sf9b78nc4t52.apps.googleusercontent.com")
-    }
-]);
-
-export function provideConfig() {
-    return config;
-}
 
 @NgModule({
     declarations: [
@@ -43,7 +31,6 @@ export function provideConfig() {
         ToastrModule.forRoot(),
         FooterModule,
         FixedPluginModule,
-        SocialLoginModule
     ],
     providers: [
         JsLoaderService,
