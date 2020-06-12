@@ -15,6 +15,7 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {GoogleAuthService} from './shared/services/google-auth.service';
 import {JsLoaderService} from './shared/services/js-loader.service';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {FullLocalDatePipe} from './pages/table/full-local-date.pipe';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
     ],
     providers: [
         JsLoaderService,
-        GoogleAuthService
+        GoogleAuthService,
+        FullLocalDatePipe
     ],
     bootstrap: [AppComponent]
 })

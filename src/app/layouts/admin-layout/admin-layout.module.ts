@@ -16,6 +16,7 @@ import {UpgradeComponent} from '../../pages/upgrade/upgrade.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {FullLocalDatePipe} from '../../pages/table/full-local-date.pipe';
 
 @NgModule({
     imports: [
@@ -34,6 +35,7 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
         IconsComponent,
         MapsComponent,
         NotificationsComponent,
+        FullLocalDatePipe,
     ]
 })
 

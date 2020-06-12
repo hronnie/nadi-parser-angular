@@ -13,6 +13,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'text'
             },
             {
                 prop: 'email',
@@ -24,6 +25,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'text'
             },
             {
                 prop: 'levelOne',
@@ -34,6 +36,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelTwo',
@@ -44,6 +47,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelThree',
@@ -54,6 +58,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelThreeC',
@@ -64,6 +69,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelFourA',
@@ -74,6 +80,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelFourB',
@@ -84,6 +91,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelFourB2',
@@ -94,6 +102,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelFive',
@@ -104,6 +113,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelSix',
@@ -114,6 +124,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelSeven',
@@ -124,6 +135,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'levelEight1',
@@ -134,6 +146,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'uti1',
@@ -144,6 +157,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'uti2',
@@ -154,6 +168,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'uti3',
@@ -164,6 +179,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'uti3plus',
@@ -174,6 +190,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'uti4',
@@ -184,6 +201,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'tk1',
@@ -194,6 +212,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'tk2',
@@ -204,6 +223,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'tk3',
@@ -214,6 +234,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
             {
                 prop: 'tk4',
@@ -224,6 +245,7 @@ export class StudentColumns {
                 resizeable: true,
                 canAutoResize: false,
                 visible: true,
+                template: 'fulldate'
             },
         ];
     }

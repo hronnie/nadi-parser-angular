@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import 'moment/locale/hu';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +8,10 @@ import {Component} from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
+
+    ngOnInit(): void {
+        moment.locale('hu_HU');
+    }
+
 }

@@ -3,6 +3,7 @@ import {GoogleAuthService} from '../../shared/services/google-auth.service';
 import {SimpleRequest} from './simple-request';
 import {StudentColumns} from './StudentColumns';
 import {StudentParserService} from './student-parser.service';
+import {ColumnMode} from '@swimlane/ngx-datatable';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -19,9 +20,12 @@ export class TableComponent implements OnInit {
 
     public model = new SimpleRequest();
     public output: string;
+    isLoading = false;
 
     rows = [];
     columns = [];
+
+    ColumnMode = ColumnMode;
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -55,6 +59,7 @@ export class TableComponent implements OnInit {
     }
 
     async onSubmit() {
+        this.isLoading = true;
         this.output = "Processing submission...";
         await this.gauth.loadClient();
         await this.gauth.loadSheetsAPI();
@@ -64,6 +69,7 @@ export class TableComponent implements OnInit {
             spreadsheetId: this.model.sheetId,
             range: this.model.range
         }).then((response) => {
+            this.isLoading = false;
             this.output = "Data found: \n";
             this.rows = this.studentParserService.parseRawSheetData(response.result.values) ;
             for (const value of response.result.values) {
