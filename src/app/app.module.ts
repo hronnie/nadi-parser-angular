@@ -14,6 +14,7 @@ import {AppRoutes} from './app.routing';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import {GoogleAuthService} from './shared/services/google-auth.service';
 import {JsLoaderService} from './shared/services/js-loader.service';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import {JsLoaderService} from './shared/services/js-loader.service';
         ToastrModule.forRoot(),
         FooterModule,
         FixedPluginModule,
+        NgxDatatableModule,
     ],
     providers: [
         JsLoaderService,

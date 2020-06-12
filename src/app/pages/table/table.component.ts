@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {GoogleAuthService} from '../../shared/services/google-auth.service';
 import {SimpleRequest} from './simple-request';
 
@@ -47,11 +47,13 @@ export class TableComponent implements OnInit {
         await this.gauth.loadClient();
         await this.gauth.loadSheetsAPI();
 
+        // @ts-ignore
         gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: this.model.sheetId,
             range: this.model.range
         }).then((response) => {
             this.output = "Data found: \n";
+            debugger;
             for (const value of response.result.values) {
                 this.output += value + "\n";
             }
