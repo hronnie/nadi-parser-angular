@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {GoogleAuthService} from '../../shared/services/google-auth.service';
 import {SimpleRequest} from './simple-request';
 import {StudentColumns} from './StudentColumns';
+import {StudentParserService} from './student-parser.service';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -24,7 +25,8 @@ export class TableComponent implements OnInit {
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
-                public gauth: GoogleAuthService) {
+                public gauth: GoogleAuthService,
+                private studentParserService: StudentParserService) {
         window.onSignIn = (googleUser) => this.onSignIn(googleUser);
         this.output = "Enter a spreadsheet id and range then press submit. "
             + "Ensure that third-party cookies are enabled in your browser settings.";
@@ -63,14 +65,7 @@ export class TableComponent implements OnInit {
             range: this.model.range
         }).then((response) => {
             this.output = "Data found: \n";
-            debugger;
-            this.rows = response.result.values.map(itemArray => {
-                return {
-                    name: itemArray[0],
-                    postalCode: itemArray[1],
-                    city: itemArray[2]
-                };
-            });
+            this.rows = this.studentParserService.parseRawSheetData(response.result.values) ;
             for (const value of response.result.values) {
                 this.output += value + "\n";
             }
