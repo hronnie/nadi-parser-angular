@@ -1,6 +1,7 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {GoogleAuthService} from '../../shared/services/google-auth.service';
 import {SimpleRequest} from './simple-request';
+import {StudentColumns} from './StudentColumns';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -18,6 +19,9 @@ export class TableComponent implements OnInit {
     public model = new SimpleRequest();
     public output: string;
 
+    rows = [];
+    columns = [];
+
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
                 public gauth: GoogleAuthService) {
@@ -26,7 +30,13 @@ export class TableComponent implements OnInit {
             + "Ensure that third-party cookies are enabled in your browser settings.";
     }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.generateColumns();
+    }
+
+    generateColumns() {
+        this.columns = StudentColumns.generateColumns();
+    }
 
     onSignIn(googleUser) {
         this.gdata.onSignIn(googleUser);
@@ -54,6 +64,13 @@ export class TableComponent implements OnInit {
         }).then((response) => {
             this.output = "Data found: \n";
             debugger;
+            this.rows = response.result.values.map(itemArray => {
+                return {
+                    name: itemArray[0],
+                    postalCode: itemArray[1],
+                    city: itemArray[2]
+                };
+            });
             for (const value of response.result.values) {
                 this.output += value + "\n";
             }

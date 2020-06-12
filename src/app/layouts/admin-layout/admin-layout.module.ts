@@ -15,13 +15,15 @@ import {NotificationsComponent} from '../../pages/notifications/notifications.co
 import {UpgradeComponent} from '../../pages/upgrade/upgrade.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule.forChild(AdminLayoutRoutes),
         FormsModule,
-        NgbModule
+        NgbModule,
+        NgxDatatableModule
     ],
     declarations: [
         DashboardComponent,
