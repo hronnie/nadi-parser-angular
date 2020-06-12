@@ -14,6 +14,8 @@ import {AppRoutes} from './app.routing';
 import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
 import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
+import {GoogleAuthService} from './shared/services/google-auth.service';
+import {JsLoaderService} from './shared/services/js-loader.service';
 
 const config = new AuthServiceConfig([
     {
@@ -44,10 +46,8 @@ export function provideConfig() {
         SocialLoginModule
     ],
     providers: [
-        {
-            provide: AuthServiceConfig,
-            useFactory: provideConfig
-        }
+        JsLoaderService,
+        GoogleAuthService
     ],
     bootstrap: [AppComponent]
 })

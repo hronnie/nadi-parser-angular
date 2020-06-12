@@ -1,11 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { AuthService, SocialUser } from "angularx-social-login";
-import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {GoogleAuthService} from '../../shared/services/google-auth.service';
+import {SimpleRequest} from './simple-request';
+// import { AuthService, SocialUser } from "angularx-social-login";
+// import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 
-declare interface TableData {
-    headerRow: string[];
-    dataRows: string[][];
+declare global {
+    interface Window { onSignIn: (googleuser: any) => void; }
 }
 
 @Component({
@@ -13,31 +14,92 @@ declare interface TableData {
     moduleId: module.id,
     templateUrl: 'table.component.html'
 })
-
 export class TableComponent implements OnInit {
-    private user: SocialUser;
-    private loggedIn: boolean;
+    public isSignedIn: boolean = false;
+    public googleDisplay = "block";
 
-    constructor(private authService: AuthService) { }
+    public model = new SimpleRequest();
+    public output: string;
 
-    ngOnInit() {
-        this.authService.authState.subscribe((user) => {
-            this.user = user;
-            this.loggedIn = (user != null);
+    constructor(public gdata: GoogleAuthService,
+                private cd: ChangeDetectorRef,
+                public gauth: GoogleAuthService) {
+        window.onSignIn = (googleUser) => this.onSignIn(googleUser);
+        this.output = "Enter a spreadsheet id and range then press submit. "
+            + "Ensure that third-party cookies are enabled in your browser settings.";
+    }
+
+    onSignIn(googleUser) {
+        this.gdata.onSignIn(googleUser);
+        this.isSignedIn = this.gdata.isSignedIn;
+        this.googleDisplay = this.gdata.googleDisplay;
+        this.cd.detectChanges();
+    }
+
+    public async signOut() {
+        console.log("calling gdata signout...");
+        await this.gdata.signOut();
+        console.log("gdata signout finished");
+        this.isSignedIn = this.gdata.isSignedIn;
+        this.googleDisplay = this.gdata.googleDisplay;
+        this.cd.detectChanges();
+    }
+
+
+
+    ngOnInit() { }
+
+    async onSubmit() {
+        this.output = "Processing submission...";
+        console.log(JSON.stringify(this.model));
+        await this.gauth.loadClient();
+        console.log("client loaded");
+        await this.gauth.loadSheetsAPI();
+        console.log("sheets v4 loaded");
+
+        gapi.client.sheets.spreadsheets.values.get({
+            spreadsheetId: this.model.sheetId,
+            range: this.model.range
+        }).then((response) => {
+            console.log("Range retrieved: "
+                + response.result.values[0]);
+            this.output = "Data found: \n";
+            for (let v of response.result.values) {
+                this.output += v + "\n";
+            }
+            this.cd.detectChanges();
+        }, (error) => {
+            this.output = "Error: \n";
+            this.output += error.result.error.message + "\n";
+            this.cd.detectChanges();
         });
-    }
 
-    signInWithGoogle(): void {
-        this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-    }
 
-    signInWithFB(): void {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-    }
 
-    signOut(): void {
-        this.authService.signOut();
-    }
+    } // End of onSubmit method
+    // private user: SocialUser;
+    // private loggedIn: boolean;
+    //
+    // constructor(private authService: AuthService) { }
+    //
+    // ngOnInit() {
+    //     this.authService.authState.subscribe((user) => {
+    //         this.user = user;
+    //         this.loggedIn = (user != null);
+    //     });
+    // }
+    //
+    // signInWithGoogle(): void {
+    //     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // }
+    //
+    // signInWithFB(): void {
+    //     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    // }
+    //
+    // signOut(): void {
+    //     this.authService.signOut();
+    // }
     // @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
     // auth2: any;
     //

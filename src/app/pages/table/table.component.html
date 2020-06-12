@@ -9,37 +9,46 @@
                     <h2>Google Login</h2>
                     <div class="row mt-5">
                         <div class="col-md-4 mt-2 m-auto ">
-                            <div class="jumbotron bg-transparent text-center">
-                                <div *ngIf="!user" class="card text-center">
-                                    <h6 class="card-header">
-                                        Social Login Demo
-                                    </h6>
-                                    <div class="card-block">
-                                        <h4 class="card-title">Not signed in</h4>
-                                        <p class="card-text">Sign in with</p>
-                                    </div>
-                                    <div class="card-block">
-                                        <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
-                                        <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
-                                    </div>
+                            <div *ngIf="isSignedIn">
+                                <button class="sign-out" matTooltip="Sign out" (click)="signOut()">Sign out
+                                </button>
+                            </div>
+                            <div [style.display]="googleDisplay">
+                                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
                                 </div>
-                                <div *ngIf="user" class="card text-center">
-                                    <h6 class="card-header">
-                                        Social Login Demo
-                                    </h6>
-                                    <div class="card-block"></div>
-                                    <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
-                                    <div class="card-block">
-                                        <h4 class="card-title">{{ user.name }}</h4>
-                                        <p class="card-text">{{ user.email }}</p>
-                                    </div>
-                                    <div class="card-block">
-                                        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
-                                    </div>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> Imported table</h4>
+            </div>
+            <div class="card-body">
+                <br>
+                <form (ngSubmit)="onSubmit()" #demoForm="ngForm">
+                    <div class="form-group">
+                        <label>Spreadsheet ID (the long text between the /d/ and the /edit/ in the address)</label>
+                        <input type="text" class="form-control" id="sheetId" required [(ngModel)]="model.sheetId" name="sheetId" #sheetId="ngModel">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Range e.g. Sheet1!A1:C</label>
+                        <input type="text" class="form-control" id="range" [(ngModel)]="model.range" name="range">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+
+                </form>
+                <br>
+                <pre>{{ output }}</pre>
             </div>
         </div>
     </div>
