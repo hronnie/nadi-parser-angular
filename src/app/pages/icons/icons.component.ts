@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'icons-cmp',
@@ -6,4 +6,5 @@ import { Component } from '@angular/core';
     templateUrl: 'icons.component.html'
 })
 
-export class IconsComponent{}
+export class IconsComponent {
+}

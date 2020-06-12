@@ -1,257 +1,46 @@
 <div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title"> Simple Table</h4>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-              <th>
-                Name
-              </th>
-              <th>
-                Country
-              </th>
-              <th>
-                City
-              </th>
-              <th class="text-right">
-                Salary
-              </th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Dakota Rice
-                </td>
-                <td>
-                  Niger
-                </td>
-                <td>
-                  Oud-Turnhout
-                </td>
-                <td class="text-right">
-                  $36,738
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Sage Rodriguez
-                </td>
-                <td>
-                  Netherlands
-                </td>
-                <td>
-                  Baileux
-                </td>
-                <td class="text-right">
-                  $56,142
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Philip Chaney
-                </td>
-                <td>
-                  Korea, South
-                </td>
-                <td>
-                  Overland Park
-                </td>
-                <td class="text-right">
-                  $38,735
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Doris Greene
-                </td>
-                <td>
-                  Malawi
-                </td>
-                <td>
-                  Feldkirchen in Kärnten
-                </td>
-                <td class="text-right">
-                  $63,542
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Mason Porter
-                </td>
-                <td>
-                  Chile
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $78,615
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Jon Porter
-                </td>
-                <td>
-                  Portugal
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $98,615
-                </td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> Simple Table</h4>
+            </div>
+            <div class="card-body">
+                <div class="container mt-5">
+                    <h2>Google Login</h2>
+                    <div class="row mt-5">
+                        <div class="col-md-4 mt-2 m-auto ">
+                            <div class="jumbotron bg-transparent text-center">
+                                <div *ngIf="!user" class="card text-center">
+                                    <h6 class="card-header">
+                                        Social Login Demo
+                                    </h6>
+                                    <div class="card-block">
+                                        <h4 class="card-title">Not signed in</h4>
+                                        <p class="card-text">Sign in with</p>
+                                    </div>
+                                    <div class="card-block">
+                                        <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()"><span class="fa fa-google"></span></button>
+                                        <button class="btn btn-social-icon btn-facebook mx-1" (click)="signInWithFB()"><span class="fa fa-facebook"></span></button>
+                                    </div>
+                                </div>
+                                <div *ngIf="user" class="card text-center">
+                                    <h6 class="card-header">
+                                        Social Login Demo
+                                    </h6>
+                                    <div class="card-block"></div>
+                                    <img class="card-img-top img-responsive photo" src="{{ user.photoUrl }}">
+                                    <div class="card-block">
+                                        <h4 class="card-title">{{ user.name }}</h4>
+                                        <p class="card-text">{{ user.email }}</p>
+                                    </div>
+                                    <div class="card-block">
+                                        <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="col-md-12">
-    <div class="card card-plain">
-      <div class="card-header">
-        <h4 class="card-title"> Table on Plain Background</h4>
-        <p class="card-category"> Here is a subtitle for this table</p>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table">
-            <thead class=" text-primary">
-              <th>
-                Name
-              </th>
-              <th>
-                Country
-              </th>
-              <th>
-                City
-              </th>
-              <th class="text-right">
-                Salary
-              </th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  Dakota Rice
-                </td>
-                <td>
-                  Niger
-                </td>
-                <td>
-                  Oud-Turnhout
-                </td>
-                <td class="text-right">
-                  $36,738
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Sage Rodriguez
-                </td>
-                <td>
-                  Netherlands
-                </td>
-                <td>
-                  Baileux
-                </td>
-                <td class="text-right">
-                  $56,142
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Philip Chaney
-                </td>
-                <td>
-                  Korea, South
-                </td>
-                <td>
-                  Overland Park
-                </td>
-                <td class="text-right">
-                  $38,735
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Doris Greene
-                </td>
-                <td>
-                  Malawi
-                </td>
-                <td>
-                  Feldkirchen in Kärnten
-                </td>
-                <td class="text-right">
-                  $63,542
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Mason Porter
-                </td>
-                <td>
-                  Chile
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $78,615
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Jon Porter
-                </td>
-                <td>
-                  Portugal
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $98,615
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

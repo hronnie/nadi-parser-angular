@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
     selector: 'upgrade-cmp',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'upgrade.component.html'
 })
 
-export class UpgradeComponent implements OnInit{
-    ngOnInit(){
+export class UpgradeComponent implements OnInit {
+    ngOnInit() {
     }
 }
