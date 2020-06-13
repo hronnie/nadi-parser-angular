@@ -21,11 +21,11 @@ export class TableComponent implements OnInit {
     public model = new SimpleRequest();
     public output: string;
     isLoading = false;
-
     rows = [];
     columns = [];
-
     ColumnMode = ColumnMode;
+    googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo';
+    googleSheetRange = 'A2:CK984';
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -38,6 +38,9 @@ export class TableComponent implements OnInit {
 
     ngOnInit() {
         this.generateColumns();
+        this.model.sheetId = this.googleSheetAccessToken;
+        this.model.range = this.googleSheetRange;
+        this.loadSheetData();
     }
 
     generateColumns() {
@@ -58,13 +61,12 @@ export class TableComponent implements OnInit {
         this.cd.detectChanges();
     }
 
-    async onSubmit() {
+    async loadSheetData() {
         this.isLoading = true;
         this.output = "Processing submission...";
         await this.gauth.loadClient();
         await this.gauth.loadSheetsAPI();
 
-        // @ts-ignore
         gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: this.model.sheetId,
             range: this.model.range

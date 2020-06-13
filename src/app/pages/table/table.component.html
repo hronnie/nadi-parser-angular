@@ -31,22 +31,6 @@
                 <h4 class="card-title">Tanfolyamok</h4>
             </div>
             <div class="card-body">
-                <br>
-                <form (ngSubmit)="onSubmit()" #demoForm="ngForm">
-                    <div class="form-group">
-                        <label>Spreadsheet ID (the long text between the /d/ and the /edit/ in the address)</label>
-                        <input type="text" class="form-control" id="sheetId" required [(ngModel)]="model.sheetId" name="sheetId" #sheetId="ngModel">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Range e.g. Sheet1!A1:C</label>
-                        <input type="text" class="form-control" id="range" [(ngModel)]="model.range" name="range">
-                    </div>
-
-                    <button type="submit" class="btn btn-success">Import google sheet</button>
-
-                </form>
-                <br>
                 <div>
                     <ngx-datatable [rows]="rows"
                                    [columns]="columns"

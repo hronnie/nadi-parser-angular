@@ -1,5 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { JsLoaderService } from './js-loader.service';
+import {global} from '@angular/compiler/src/util';
 
 declare global {
     var gapi;
@@ -40,6 +41,7 @@ export class GoogleAuthService {
 
     public async loadClient() {
         const clientPromise$ = new Promise<void>((resolve) => {
+            debugger;
             gapi.load("client", () => {
                     resolve();
                 },

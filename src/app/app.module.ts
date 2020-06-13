@@ -16,6 +16,7 @@ import {GoogleAuthService} from './shared/services/google-auth.service';
 import {JsLoaderService} from './shared/services/js-loader.service';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {FullLocalDatePipe} from './pages/table/full-local-date.pipe';
+import {AgGridModule} from 'ag-grid-angular';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {FullLocalDatePipe} from './pages/table/full-local-date.pipe';
         FooterModule,
         FixedPluginModule,
         NgxDatatableModule,
+        AgGridModule.withComponents([])
     ],
     providers: [
         JsLoaderService,
