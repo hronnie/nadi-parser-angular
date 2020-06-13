@@ -32,40 +32,21 @@
             </div>
             <div class="card-body">
                 <div>
-                    <ngx-datatable [rows]="rows"
-                                   [columns]="columns"
-                                   [columnMode]="ColumnMode.force"
-                                   [headerHeight]="50"
-                                   [footerHeight]="50"
-                                   [reorderable]="true"
-                                   [scrollbarH]="true"
-                                   rowHeight="auto"
-                                   [loadingIndicator]="isLoading"
+<!--                    <ag-grid-angular-->
+<!--                            style="width: 500px; height: 500px;"-->
+<!--                            class="ag-theme-alpine"-->
+<!--                            [rowData]="rows"-->
+<!--                            [columnDefs]="columns"-->
+<!--                    >-->
+<!--                    </ag-grid-angular>-->
 
+                    <ag-grid-angular
+                            style="width: 500px; height: 500px;"
+                            class="ag-theme-alpine"
+                            [rowData]="rowData"
+                            [columnDefs]="columnDefs"
                     >
-<!--                        <ng-template ngFor let-item [ngForOf]="columns">-->
-<!--                            <ngx-datatable-column *ngIf="item.visible" [canAutoResize]="item.canAutoResize"-->
-<!--                                                  [cellTemplate]="item.cellTemplate"-->
-<!--                                                  [draggable]="item.draggable"-->
-<!--                                                  [frozenRight]="item.frozenRight"-->
-<!--                                                  [resizeable]="item.resizeable"-->
-<!--                                                  [sortable]="item.sortable"-->
-<!--                                                  [width]="item.width"-->
-<!--                                                  [prop]="item.name">-->
-
-<!--                                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>-->
-<!--                                    <ng-container *ngIf="item.template === 'fulldate'">-->
-<!--                                        {{value | fullLocalDate}}-->
-<!--                                    </ng-container>-->
-<!--                                    <ng-container *ngIf="item.template === 'text'">-->
-<!--                                        <div class="truncateText">-->
-<!--                                            {{value}}-->
-<!--                                        </div>-->
-<!--                                    </ng-container>-->
-<!--                                </ng-template>-->
-<!--                            </ngx-datatable-column>-->
-<!--                        </ng-template>-->
-                    </ngx-datatable>
+                    </ag-grid-angular>
                 </div>
             </div>
         </div>

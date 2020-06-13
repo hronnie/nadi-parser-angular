@@ -41,7 +41,6 @@ export class GoogleAuthService {
 
     public async loadClient() {
         const clientPromise$ = new Promise<void>((resolve) => {
-            debugger;
             gapi.load("client", () => {
                     resolve();
                 },

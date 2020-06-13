@@ -27,6 +27,23 @@ export class TableComponent implements OnInit {
     googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo';
     googleSheetRange = 'A2:CK984';
 
+
+
+
+    columnDefs = [
+        {headerName: 'Make', field: 'make' },
+        {headerName: 'Model', field: 'model' },
+        {headerName: 'Price', field: 'price'}
+    ];
+
+    rowData = [
+        { make: 'Toyota', model: 'Celica', price: 35000 },
+        { make: 'Ford', model: 'Mondeo', price: 32000 },
+        { make: 'Porsche', model: 'Boxter', price: 72000 }
+    ];
+
+
+
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
                 public gauth: GoogleAuthService,
@@ -62,6 +79,7 @@ export class TableComponent implements OnInit {
     }
 
     async loadSheetData() {
+        this.rows = [{col1: 'col 1 value', col2: 'col 2 value'}];
         this.isLoading = true;
         this.output = "Processing submission...";
         await this.gauth.loadClient();
@@ -73,7 +91,8 @@ export class TableComponent implements OnInit {
         }).then((response) => {
             this.isLoading = false;
             this.output = "Data found: \n";
-            this.rows = this.studentParserService.parseRawSheetData(response.result.values) ;
+            this.rows = [{col1: 'col 1 value', col2: 'col 2 value'}];
+            // this.rows = this.studentParserService.parseRawSheetData(response.result.values) ;
             for (const value of response.result.values) {
                 this.output += value + "\n";
             }
