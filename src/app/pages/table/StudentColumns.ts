@@ -1,254 +1,152 @@
+import * as moment from 'moment';
+
 export class StudentColumns {
+
+
 
     static columns: any;
 
     static generateColumns(): any {
+
+        function dateTimeFormatter(params) {
+            if (!params.value || params.value === 0) {
+                return '';
+            }
+            return moment(params.value).format('L');
+        }
+
         return [
-            {headerName: 'col 1', field: 'col1'},
-            {headerName: 'col 2', field: 'col2'},
-            // {
-            //     prop: 'name',
-            //     name: 'Név',
-            //     width: 150,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'text'
-            // },
-            // {
-            //     prop: 'email',
-            //     name: 'Email',
-            //     headerName: 'Email',
-            //     width: 150,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'text'
-            // },
-            // {
-            //     prop: 'levelOne',
-            //     name: '1-es',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelTwo',
-            //     name: '2-es',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelThree',
-            //     name: '3-as',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelThreeC',
-            //     name: '3/C',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelFourA',
-            //     name: '4A',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelFourB',
-            //     name: '4B',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelFourB2',
-            //     name: '4B/2',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelFive',
-            //     name: '5-ös',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelSix',
-            //     name: '6-os',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelSeven',
-            //     name: '7-es',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'levelEight1',
-            //     name: '8/1-es',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'uti1',
-            //     name: 'Uti 1',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'uti2',
-            //     name: 'Uti 2',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'uti3',
-            //     name: 'Uti 3',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'uti3plus',
-            //     name: 'Uti 3+',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'uti4',
-            //     name: 'Uti 4',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'tk1',
-            //     name: 'TK 1',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'tk2',
-            //     name: 'TK 2',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'tk3',
-            //     name: 'TK 3',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
-            // {
-            //     prop: 'tk4',
-            //     name: 'TK 4',
-            //     width: 100,
-            //     sortable: true,
-            //     draggable: true,
-            //     resizeable: true,
-            //     canAutoResize: false,
-            //     visible: true,
-            //     template: 'fulldate'
-            // },
+            {
+                field: 'name',
+                headerName: 'Név',
+                sort: 'asc',
+                sortable: true
+            },
+            {
+                field: 'email',
+                headerName: 'Email',
+                sortable: true
+            },
+            {
+                field: 'levelOne',
+                headerName: '1-es',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelTwo',
+                headerName: '2-es',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelThree',
+                headerName: '3-as',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelThreeC',
+                headerName: '3/C',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelFourA',
+                headerName: '4A',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelFourB',
+                headerName: '4B',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelFourB2',
+                headerName: '4B/2',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelFive',
+                headerName: '5-ös',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelSix',
+                headerName: '6-os',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelSeven',
+                headerName: '7-es',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'levelEight1',
+                headerName: '8/1-es',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'uti1',
+                headerName: 'Uti 1',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'uti2',
+                headerName: 'Uti 2',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'uti3',
+                headerName: 'Uti 3',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'uti3plus',
+                headerName: 'Uti 3+',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'uti4',
+                headerName: 'Uti 4',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'tk1',
+                headerName: 'TK 1',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'tk2',
+                headerName: 'TK 2',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'tk3',
+                headerName: 'TK 3',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
+            {
+                field: 'tk4',
+                headerName: 'TK 4',
+                valueFormatter: dateTimeFormatter,
+                sortable: true
+            },
         ];
     }
 }
