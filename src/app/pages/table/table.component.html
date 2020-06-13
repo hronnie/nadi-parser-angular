@@ -9,10 +9,15 @@
                     <div class="row mt-5">
                         <div class="col-md-4 mt-2 m-auto ">
                             <div *ngIf="isSignedIn">
-                                <button class="sign-out" matTooltip="Sign out" (click)="signOut()">Sign out
-                                </button>
+                                <blockquote class="blockquote">
+                                    <p class="mb-0">Sikerült kapcsolódni a tanítványokat tartalmazó Google Sheet-hez</p>
+                                    <button type="button" class="btn btn-info" (click)="signOut()" [style]="{'margin-left': '85px'}">Kijelentkezés</button>
+                                </blockquote>
                             </div>
                             <div [style.display]="googleDisplay">
+                                <blockquote class="blockquote">
+                                    <p class="mb-0">Kérlek, ezzel a gombbal jelentkezz be a Google fiókodba (amelyiknek van hozzáférése az excel-hez)</p>
+                                </blockquote>
                                 <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark">
                                 </div>
                             </div>
