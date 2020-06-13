@@ -42,8 +42,17 @@
                             class="ag-theme-alpine"
                             [rowData]="rows"
                             [columnDefs]="columns"
+                            [rowSelection]="'multiple'"
+                            (selectionChanged)="onSelectionChanged()"
+                            (gridReady)="onGridReady($event)"
                     >
                     </ag-grid-angular>
+                    <div class="example-header">
+                        Selection:
+                        <tr *ngFor="let student of selectedRows">
+                            <td>{{student.name}}</td>
+                        </tr>
+                    </div>
                 </div>
             </div>
         </div>

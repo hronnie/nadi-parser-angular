@@ -20,7 +20,10 @@ export class StudentColumns {
                 field: 'name',
                 headerName: 'Név',
                 sort: 'asc',
-                sortable: true
+                sortable: true,
+                headerCheckboxSelection: true,
+                headerCheckboxSelectionFilteredOnly: true,
+                checkboxSelection: true,
             },
             {
                 field: 'email',

@@ -25,10 +25,9 @@ export class TableComponent implements OnInit {
     columns = [];
     googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo';
     googleSheetRange = 'A2:CK984';
-    defaultColDef: {
-        sortable: true
-    }
-
+    private gridApi;
+    private gridColumnApi;
+    selectedRows: any [];
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -44,6 +43,19 @@ export class TableComponent implements OnInit {
         this.model.sheetId = this.googleSheetAccessToken;
         this.model.range = this.googleSheetRange;
         this.loadSheetData();
+    }
+
+    onGridReady(params) {
+        this.gridApi = params.api;
+        this.gridColumnApi = params.columnApi;
+
+
+    }
+
+    onSelectionChanged() {
+
+        this.selectedRows = this.gridApi.getSelectedRows();
+        debugger;
     }
 
     generateColumns() {
