@@ -3,7 +3,7 @@ import {GoogleAuthService} from '../../shared/services/google-auth.service';
 import {SimpleRequest} from '../../shared/model/simple-request';
 import {StudentColumns} from '../../shared/model/student-columns';
 import {StudentParserService} from '../../shared/services/student-parser.service';
-import {TrainingTypes} from '../../shared/model/training-types';
+import {StudentFilterService} from '../../shared/services/student-filter.service';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -26,17 +26,20 @@ export class TableComponent implements OnInit {
 
     isLoading = false;
     rows = [];
+    origRows = [];
     columns = [];
     googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo';
     googleSheetRange = 'A2:CK984';
     selectedRows: any [];
     trainingSelectItems = [];
     selectedTraining: any;
+    trainingInviteEmails: string[];
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
                 public gauth: GoogleAuthService,
-                private studentParserService: StudentParserService) {
+                private studentParserService: StudentParserService,
+                private studentFilterService: StudentFilterService) {
         window.onSignIn = (googleUser) => this.onSignIn(googleUser);
         this.output = "Enter a spreadsheet id and range then press submit. "
             + "Ensure that third-party cookies are enabled in your browser settings.";
@@ -78,7 +81,6 @@ export class TableComponent implements OnInit {
     }
 
     async loadSheetData() {
-        this.rows = [{col1: 'col 1 value', col2: 'col 2 value'}];
         this.isLoading = true;
         this.output = "Processing submission...";
         await this.gauth.loadClient();
@@ -90,7 +92,7 @@ export class TableComponent implements OnInit {
         }).then((response) => {
             this.isLoading = false;
             this.output = "Data found: \n";
-            this.rows = this.studentParserService.parseRawSheetData(response.result.values) ;
+            this.rows = this.origRows = this.studentParserService.parseRawSheetData(response.result.values);
             for (const value of response.result.values) {
                 this.output += value + "\n";
             }
@@ -103,8 +105,8 @@ export class TableComponent implements OnInit {
     }
 
     onTrainingSelect($event: any) {
-        console.log($event);
-        debugger;
+        this.rows = this.studentFilterService.filterDataByLevel($event.value, this.origRows);
+        this.trainingInviteEmails = this.rows.map(item => item._email);
     }
 
     private generateTrainingSelectItems(studentColumns: any) {

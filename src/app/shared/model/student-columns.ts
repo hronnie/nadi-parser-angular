@@ -1,4 +1,5 @@
 import * as moment from 'moment';
+import {LEVEL_FILTERS} from './level-consts';
 
 export class StudentColumns {
 
@@ -29,121 +30,121 @@ export class StudentColumns {
                 sortable: true
             },
             {
-                field: 'levelOne',
+                field: LEVEL_FILTERS.LEVEL_ONE,
                 headerName: '1-es',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelTwo',
+                field: LEVEL_FILTERS.LEVEL_TWO,
                 headerName: '2-es',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelThree',
+                field: LEVEL_FILTERS.LEVEL_THREE,
                 headerName: '3-as',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelThreeC',
+                field: LEVEL_FILTERS.LEVEL_THREE_C,
                 headerName: '3/C',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelFourA',
+                field: LEVEL_FILTERS.LEVEL_FOUR_A,
                 headerName: '4A',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelFourB',
+                field: LEVEL_FILTERS.LEVEL_FOUR_B,
                 headerName: '4B',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelFourB2',
+                field: LEVEL_FILTERS.LEVEL_FOUR_B_2,
                 headerName: '4B/2',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelFive',
+                field: LEVEL_FILTERS.LEVEL_FIVE,
                 headerName: '5-ös',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelSix',
+                field: LEVEL_FILTERS.LEVEL_SIX,
                 headerName: '6-os',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelSeven',
+                field: LEVEL_FILTERS.LEVEL_SEVEN,
                 headerName: '7-es',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'levelEight1',
+                field: LEVEL_FILTERS.LEVEL_EIGHT_1,
                 headerName: '8/1-es',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'uti1',
+                field: LEVEL_FILTERS.LEVEL_UTI_1,
                 headerName: 'Uti 1',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'uti2',
+                field: LEVEL_FILTERS.LEVEL_UTI_2,
                 headerName: 'Uti 2',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'uti3',
+                field: LEVEL_FILTERS.LEVEL_UTI_3,
                 headerName: 'Uti 3',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'uti3plus',
+                field: LEVEL_FILTERS.LEVEL_UTI_3_PLUS,
                 headerName: 'Uti 3+',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'uti4',
+                field: LEVEL_FILTERS.LEVEL_UTI_4,
                 headerName: 'Uti 4',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'tk1',
+                field: LEVEL_FILTERS.LEVEL_TK_1,
                 headerName: 'TK 1',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'tk2',
+                field: LEVEL_FILTERS.LEVEL_TK_2,
                 headerName: 'TK 2',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'tk3',
+                field: LEVEL_FILTERS.LEVEL_TK_3,
                 headerName: 'TK 3',
                 valueFormatter: dateTimeFormatter,
                 sortable: true
             },
             {
-                field: 'tk4',
+                field: LEVEL_FILTERS.LEVEL_TK_4,
                 headerName: 'TK 4',
                 valueFormatter: dateTimeFormatter,
                 sortable: true

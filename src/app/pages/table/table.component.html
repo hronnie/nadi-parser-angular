@@ -66,6 +66,12 @@
                             <td>{{student.name}}</td>
                         </tr>
                     </div>
+                    <div class="example-header">
+                        Ezek az email címek jöhetnek:
+                        <tr *ngFor="let email of trainingInviteEmails">
+                            <td>{{email}}</td>
+                        </tr>
+                    </div>
                 </div>
             </div>
         </div>
