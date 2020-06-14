@@ -16,8 +16,8 @@ import {UpgradeComponent} from '../../pages/upgrade/upgrade.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
-import {FullLocalDatePipe} from '../../pages/table/full-local-date.pipe';
 import {AgGridModule} from 'ag-grid-angular';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 @NgModule({
     imports: [
@@ -26,7 +26,8 @@ import {AgGridModule} from 'ag-grid-angular';
         FormsModule,
         NgbModule,
         NgxDatatableModule,
-        AgGridModule
+        AgGridModule,
+        NgSelectModule
     ],
     declarations: [
         DashboardComponent,
@@ -37,7 +38,6 @@ import {AgGridModule} from 'ag-grid-angular';
         IconsComponent,
         MapsComponent,
         NotificationsComponent,
-        FullLocalDatePipe,
     ]
 })
 

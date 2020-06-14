@@ -2,8 +2,6 @@ import * as moment from 'moment';
 
 export class StudentColumns {
 
-
-
     static columns: any;
 
     static generateColumns(): any {
@@ -17,7 +15,7 @@ export class StudentColumns {
 
         return [
             {
-                field: 'name',
+                field: '_name',
                 headerName: 'Név',
                 sort: 'asc',
                 sortable: true,
@@ -26,7 +24,7 @@ export class StudentColumns {
                 checkboxSelection: true,
             },
             {
-                field: 'email',
+                field: '_email',
                 headerName: 'Email',
                 sortable: true
             },

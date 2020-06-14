@@ -15,8 +15,8 @@ import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.componen
 import {GoogleAuthService} from './shared/services/google-auth.service';
 import {JsLoaderService} from './shared/services/js-loader.service';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
-import {FullLocalDatePipe} from './pages/table/full-local-date.pipe';
 import {AgGridModule} from 'ag-grid-angular';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -35,12 +35,12 @@ import {AgGridModule} from 'ag-grid-angular';
         FooterModule,
         FixedPluginModule,
         NgxDatatableModule,
-        AgGridModule.withComponents([])
+        AgGridModule.withComponents([]),
+        NgSelectModule
     ],
     providers: [
         JsLoaderService,
         GoogleAuthService,
-        FullLocalDatePipe
     ],
     bootstrap: [AppComponent]
 })

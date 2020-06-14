@@ -1,9 +1,9 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {GoogleAuthService} from '../../shared/services/google-auth.service';
-import {SimpleRequest} from './simple-request';
-import {StudentColumns} from './StudentColumns';
-import {StudentParserService} from './student-parser.service';
-import {ColumnMode} from '@swimlane/ngx-datatable';
+import {SimpleRequest} from '../../shared/model/simple-request';
+import {StudentColumns} from '../../shared/model/student-columns';
+import {StudentParserService} from '../../shared/services/student-parser.service';
+import {TrainingTypes} from '../../shared/model/training-types';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -12,22 +12,26 @@ declare global {
 @Component({
     selector: 'table-cmp',
     moduleId: module.id,
-    templateUrl: 'table.component.html'
+    templateUrl: 'table.component.html',
+    styleUrls: ['table.component.scss']
 })
 export class TableComponent implements OnInit {
     public isSignedIn = false;
     public googleDisplay = "block";
-
     public model = new SimpleRequest();
     public output: string;
+
+    private gridApi;
+    private gridColumnApi;
+
     isLoading = false;
     rows = [];
     columns = [];
     googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo';
     googleSheetRange = 'A2:CK984';
-    private gridApi;
-    private gridColumnApi;
     selectedRows: any [];
+    trainingSelectItems = [];
+    selectedTraining: any;
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -43,19 +47,16 @@ export class TableComponent implements OnInit {
         this.model.sheetId = this.googleSheetAccessToken;
         this.model.range = this.googleSheetRange;
         this.loadSheetData();
+        this.generateTrainingSelectItems(StudentColumns.generateColumns());
     }
 
     onGridReady(params) {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
-
-
     }
 
     onSelectionChanged() {
-
         this.selectedRows = this.gridApi.getSelectedRows();
-        debugger;
     }
 
     generateColumns() {
@@ -99,5 +100,20 @@ export class TableComponent implements OnInit {
             this.output += error.result.error.message + "\n";
             this.cd.detectChanges();
         });
+    }
+
+    onTrainingSelect($event: any) {
+        console.log($event);
+        debugger;
+    }
+
+    private generateTrainingSelectItems(studentColumns: any) {
+        const levelColumns = studentColumns.filter(item => !item.field.startsWith('_'));
+        this.trainingSelectItems = levelColumns.map(item => {
+            return {
+                name: item.headerName + ' tanfolyam',
+                value: item.field
+            }
+        })
     }
 }

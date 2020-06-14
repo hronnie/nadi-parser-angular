@@ -11,7 +11,7 @@
                             <div *ngIf="isSignedIn">
                                 <blockquote class="blockquote">
                                     <p class="mb-0">Sikerült kapcsolódni a tanítványokat tartalmazó Google Sheet-hez</p>
-                                    <button type="button" class="btn btn-info" (click)="signOut()" [style]="{'margin-left': '85px'}">Kijelentkezés</button>
+                                    <button type="button" class="btn btn-info sign-out-button" (click)="signOut()">Kijelentkezés</button>
                                 </blockquote>
                             </div>
                             <div [style.display]="googleDisplay">
@@ -34,8 +34,21 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Tanfolyamok</h4>
+                <small class="text-muted">Először válaszd ki, hogy melyik tanfolyamra szeretnél meghívókat küldeni.</small>
             </div>
             <div class="card-body">
+                <div class="select-training-drop-down">
+                    <ng-select
+                            (change)="onTrainingSelect($event)"
+                            [(ngModel)]="selectedTraining"
+                            [clearable]="false"
+                            [closeOnSelect]="true"
+                            [hideSelected]="false"
+                            [items]="trainingSelectItems"
+                            bindLabel="name"
+                            placeholder="All">
+                    </ng-select>
+                </div>
                 <div>
                     <ag-grid-angular
                             style="max-width: 1800px; height: 500px;"

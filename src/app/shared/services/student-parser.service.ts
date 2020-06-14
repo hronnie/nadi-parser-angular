@@ -10,8 +10,8 @@ export class StudentParserService {
     parseRawSheetData(values: any) {
         return values.map(itemArray => {
             return {
-                name: itemArray[0],
-                email: itemArray[6],
+                _name: itemArray[0],
+                _email: itemArray[6],
                 levelOne: itemArray[11],
                 levelTwo: itemArray[12],
                 levelThree: itemArray[13],
