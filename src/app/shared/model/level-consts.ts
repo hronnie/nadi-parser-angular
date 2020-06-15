@@ -1,4 +1,4 @@
-export const LEVEL_FILTERS = {
+export const XLS_FIELD_NAMES = {
     LEVEL_ALL: 'levelAll',
     LEVEL_ONE: 'levelOne',
     LEVEL_TWO: 'levelTwo',
@@ -20,6 +20,11 @@ export const LEVEL_FILTERS = {
     LEVEL_TK_2: 'tk2',
     LEVEL_TK_3: 'tk3',
     LEVEL_TK_4: 'tk4',
+    DATA_EMAIL_DISABLED: '_emailDisabled',
+    DATA_REMOVED: '_removed',
+    DATA_REMARK: '_remark',
+    DATA_NAME: '_name',
+    DATA_EMAIL: '_email'
 }
 
 export const LEVEL_WAITING_TIMES = {
@@ -27,7 +32,14 @@ export const LEVEL_WAITING_TIMES = {
     LEVEL_THREE: 180,
     LEVEL_FOUR_A: 180,
     LEVEL_FOUR_B: 90,
+    LEVEL_FOUR_B_2: 90,
     LEVEL_FIVE: 90,
     LEVEL_SIX: 180,
-    LEVEL_SEVEN: 365
+    LEVEL_SEVEN: 365,
+    LEVEL_EIGHT_1: 365,
+    LEVEL_UTI_1: 30,
+    LEVEL_UTI_2: 180,
+    LEVEL_UTI_3: 180,
+    LEVEL_UTI_3_PLUS: 180,
+    LEVEL_UTI_4: 180,
 }

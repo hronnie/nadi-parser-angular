@@ -12,6 +12,9 @@ export class StudentParserService {
             return {
                 _name: itemArray[0],
                 _email: itemArray[6],
+                _emailDisabled: itemArray[7],
+                _removed: itemArray[8],
+                _remark: itemArray[9],
                 levelOne: itemArray[11],
                 levelTwo: itemArray[12],
                 levelThree: itemArray[13],
@@ -36,4 +39,3 @@ export class StudentParserService {
         });
     }
 }
-
