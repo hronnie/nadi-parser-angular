@@ -58,8 +58,6 @@ export class TableComponent implements OnInit {
         this.generateTrainingSelectItems(StudentColumns.generateColumns());
     }
 
-
-
     onGridReady(params) {
         this.gridApi = params.api;
         this.gridColumnApi = params.columnApi;
@@ -128,7 +126,5 @@ export class TableComponent implements OnInit {
 
     onDateSelect($event: NgbDate) {
         this.trainingDate = moment($event.year + '-' + $event.month + '-' + $event.day, "YYYY-MM-DD");
-        console.log($event);
-        debugger;
     }
 }
