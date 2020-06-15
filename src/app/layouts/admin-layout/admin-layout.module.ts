@@ -18,6 +18,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {AgGridModule} from 'ag-grid-angular';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {SafePipe} from '../../shared/pipes/safePipe';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import {NgSelectModule} from '@ng-select/ng-select';
         IconsComponent,
         MapsComponent,
         NotificationsComponent,
+        SafePipe,
     ]
 })
 

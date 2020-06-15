@@ -33,12 +33,13 @@ export class TableComponent implements OnInit {
     columns = [];
     googleSheetAccessToken = '1iYSCV_2HwzyTD2QIRqEmkQTSEB54qteAAyzFWb1DemY'; // test data
     // googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo'; // orig data
-    googleSheetRange = 'A2:CK984';
+    googleSheetRange = 'A2:CM984';
     selectedRows: any [];
     trainingSelectItems = [];
     selectedTraining: any;
     trainingInviteEmails: string[];
     trainingDate = moment();
+    templateUrl: string;
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -98,9 +99,8 @@ export class TableComponent implements OnInit {
             this.isLoading = false;
             this.output = "Data found: \n";
             this.rows = this.origRows = this.studentParserService.parseRawSheetData(response.result.values);
-            for (const value of response.result.values) {
-                this.output += value + "\n";
-            }
+            debugger;
+            this.templateUrl = response.result.values[0][90];
             this.cd.detectChanges();
         }, (error) => {
             this.output = "Error: \n";
