@@ -9,7 +9,10 @@ export class StudentFilterService {
 
     constructor() { }
 
-    filterDataByLevel(level: string, origData) {
+    trainingDate: any;
+
+    filterDataByLevel(level: string, origData, trainingDate) {
+        this.trainingDate = moment(trainingDate);
         switch (level) {
             case XLS_FIELD_NAMES.LEVEL_ALL: {
                 return origData;
@@ -222,9 +225,8 @@ export class StudentFilterService {
     }
 
     isWaitingTimeOk(levelCompletedDate, waitingTime) {
-        const currentDate = moment();
         const formattedLevelCompletedDate = moment(levelCompletedDate);
-        return (currentDate.diff(formattedLevelCompletedDate, 'days') >= waitingTime);
+        return (this.trainingDate.diff(formattedLevelCompletedDate, 'days') >= waitingTime);
     }
 
     isUserNotDisabled(row) {

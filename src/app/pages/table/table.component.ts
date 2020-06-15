@@ -5,6 +5,8 @@ import {StudentColumns} from '../../shared/model/student-columns';
 import {StudentParserService} from '../../shared/services/student-parser.service';
 import {StudentFilterService} from '../../shared/services/student-filter.service';
 import {XLS_FIELD_NAMES} from '../../shared/model/level-consts';
+import * as moment from 'moment';
+import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -36,6 +38,7 @@ export class TableComponent implements OnInit {
     trainingSelectItems = [];
     selectedTraining: any;
     trainingInviteEmails: string[];
+    trainingDate = moment();
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -54,6 +57,8 @@ export class TableComponent implements OnInit {
         this.loadSheetData();
         this.generateTrainingSelectItems(StudentColumns.generateColumns());
     }
+
+
 
     onGridReady(params) {
         this.gridApi = params.api;
@@ -107,7 +112,7 @@ export class TableComponent implements OnInit {
     }
 
     onTrainingSelect($event: any) {
-        this.rows = this.studentFilterService.filterDataByLevel($event.value, this.origRows);
+        this.rows = this.studentFilterService.filterDataByLevel($event.value, this.origRows, this.trainingDate);
         this.trainingInviteEmails = this.rows?.map(item => item._email);
     }
 
@@ -119,5 +124,11 @@ export class TableComponent implements OnInit {
                 value: item.field !== XLS_FIELD_NAMES.LEVEL_ONE ? item.field : XLS_FIELD_NAMES.LEVEL_ALL
             }
         })
+    }
+
+    onDateSelect($event: NgbDate) {
+        this.trainingDate = moment($event.year + '-' + $event.month + '-' + $event.day, "YYYY-MM-DD");
+        console.log($event);
+        debugger;
     }
 }

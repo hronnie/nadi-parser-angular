@@ -29,6 +29,32 @@
     </div>
 </div>
 
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"> Válaszd ki, hogy mikor van a tanfolyam időpontja </h4>
+                <small>Ha semmit nem választasz ki, akkor a mai dátumot veszi figyelembe</small>
+            </div>
+            <div class="card-body">
+                <div class="container mt-5">
+                    <div class="row mt-5">
+                        <div class="col-md-4 mt-2 m-auto ">
+                            <ngb-datepicker  (dateSelect)="onDateSelect($event)" #d></ngb-datepicker>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-4 mt-2 m-auto ">
+                            A kiválasztott dátum: <strong>{{trainingDate | date}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-12">
         <div class="card">
