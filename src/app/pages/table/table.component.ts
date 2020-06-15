@@ -4,6 +4,7 @@ import {SimpleRequest} from '../../shared/model/simple-request';
 import {StudentColumns} from '../../shared/model/student-columns';
 import {StudentParserService} from '../../shared/services/student-parser.service';
 import {StudentFilterService} from '../../shared/services/student-filter.service';
+import {XLS_FIELD_NAMES} from '../../shared/model/level-consts';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -28,7 +29,8 @@ export class TableComponent implements OnInit {
     rows = [];
     origRows = [];
     columns = [];
-    googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo';
+    googleSheetAccessToken = '1iYSCV_2HwzyTD2QIRqEmkQTSEB54qteAAyzFWb1DemY'; // test data
+    // googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo'; // orig data
     googleSheetRange = 'A2:CK984';
     selectedRows: any [];
     trainingSelectItems = [];
@@ -106,15 +108,15 @@ export class TableComponent implements OnInit {
 
     onTrainingSelect($event: any) {
         this.rows = this.studentFilterService.filterDataByLevel($event.value, this.origRows);
-        this.trainingInviteEmails = this.rows.map(item => item._email);
+        this.trainingInviteEmails = this.rows?.map(item => item._email);
     }
 
     private generateTrainingSelectItems(studentColumns: any) {
         const levelColumns = studentColumns.filter(item => !item.field.startsWith('_'));
         this.trainingSelectItems = levelColumns.map(item => {
             return {
-                name: item.headerName + ' tanfolyam',
-                value: item.field
+                name: item.field !== XLS_FIELD_NAMES.LEVEL_ONE ?  item.headerName + ' tanfolyam' : 'Összes tanfolyam',
+                value: item.field !== XLS_FIELD_NAMES.LEVEL_ONE ? item.field : XLS_FIELD_NAMES.LEVEL_ALL
             }
         })
     }

@@ -10,15 +10,14 @@ export class StudentFilterService {
     constructor() { }
 
     filterDataByLevel(level: string, origData) {
-        let newData;
-
         switch (level) {
             case XLS_FIELD_NAMES.LEVEL_ALL: {
-                newData = origData;
+                return origData;
                 break;
             }
             case XLS_FIELD_NAMES.LEVEL_TWO: {
                 return origData.filter(item => {
+                    console.log(item._name);
                     return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_ONE])
                         && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_TWO])
                         && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
@@ -53,13 +52,7 @@ export class StudentFilterService {
             case XLS_FIELD_NAMES.LEVEL_THREE_C: {
                 return origData.filter(item => {
                     return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_A])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B_2])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE_C])
                         && !this.isUserNotDisabled(item);
                 })
                 break;
@@ -221,6 +214,9 @@ export class StudentFilterService {
     }
 
     isFormatLevelDateValid(dateValue) {
+        if (!dateValue) {
+            return false;
+        }
         const levelDate = moment(dateValue);
         return levelDate.isValid();
     }
@@ -228,14 +224,11 @@ export class StudentFilterService {
     isWaitingTimeOk(levelCompletedDate, waitingTime) {
         const currentDate = moment();
         const formattedLevelCompletedDate = moment(levelCompletedDate);
-        if (currentDate.diff(formattedLevelCompletedDate, 'days') >= waitingTime) {
-            return true;
-        }
-        return false;
+        return (currentDate.diff(formattedLevelCompletedDate, 'days') >= waitingTime);
     }
 
     isUserNotDisabled(row) {
-        return row[XLS_FIELD_NAMES.DATA_EMAIL_DISABLED] === 1 || row[XLS_FIELD_NAMES.DATA_REMOVED] === 1;
+        return row[XLS_FIELD_NAMES.DATA_EMAIL_DISABLED] === "1" || row[XLS_FIELD_NAMES.DATA_REMOVED] === "1";
     }
 }
 
