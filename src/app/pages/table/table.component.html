@@ -131,7 +131,8 @@
                 <small class="text-muted">Másolj ki mindent az előző dokumentumból és illeszd be ide. Erre azért van szükség,
                 mert ebből a programból nem férek hozzá a Google Docs-hoz</small>
             </div>
-            <div class="card-body">
+            <div class="card-body card-padding">
+                <angular-editor [config]="editorConfig" [(ngModel)]="emailTemplateHtmlContent"></angular-editor>
             </div>
         </div>
     </div>

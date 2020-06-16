@@ -19,6 +19,7 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {AgGridModule} from 'ag-grid-angular';
 import {NgSelectModule} from '@ng-select/ng-select';
 import {SafePipe} from '../../shared/pipes/safePipe';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import {SafePipe} from '../../shared/pipes/safePipe';
         NgbModule,
         NgxDatatableModule,
         AgGridModule,
-        NgSelectModule
+        NgSelectModule,
+        AngularEditorModule
     ],
     declarations: [
         DashboardComponent,

@@ -7,6 +7,7 @@ import {StudentFilterService} from '../../shared/services/student-filter.service
 import {XLS_FIELD_NAMES} from '../../shared/model/level-consts';
 import * as moment from 'moment';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {AngularEditorConfig} from '@kolkov/angular-editor';
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -41,6 +42,35 @@ export class TableComponent implements OnInit {
     trainingDate = moment();
     templateUrlMap: Map<string, string>;
     selectedTemplateUrl: string;
+    emailTemplateHtmlContent: string;
+    editorConfig: AngularEditorConfig = {
+        editable: true,
+        spellcheck: true,
+        height: '15rem',
+        minHeight: '5rem',
+        placeholder: 'Ide másold be a szöveget',
+        translate: 'no',
+        defaultParagraphSeparator: 'p',
+        defaultFontName: 'Arial',
+        toolbarHiddenButtons: [
+            ['bold']
+        ],
+        customClasses: [
+            {
+                name: "quote",
+                class: "quote",
+            },
+            {
+                name: 'redText',
+                class: 'redText'
+            },
+            {
+                name: "titleText",
+                class: "titleText",
+                tag: "h1",
+            },
+        ]
+    };
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
