@@ -35,7 +35,7 @@
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title"> Válaszd ki, hogy mikor van a tanfolyam időpontja </h4>
-                <small>Ha semmit nem választasz ki, akkor a mai dátumot veszi figyelembe</small>
+                <small class="text-muted">Ha semmit nem választasz ki, akkor a mai dátumot veszi figyelembe</small>
             </div>
             <div class="card-body">
                 <div class="container mt-5">
@@ -75,7 +75,7 @@
                             placeholder="All">
                     </ng-select>
                 </div>
-                <div>
+                <div class="card-padding">
                     <ag-grid-angular
                             style="max-width: 1800px; height: 500px;"
                             class="ag-theme-alpine"
@@ -88,7 +88,7 @@
                     </ag-grid-angular>
 <!--                    <div class="example-header">-->
 <!--                        Selection:-->
-<!--                        <tr *ngFor="let student of selectedRows">-->
+<!--                        <tr *ngFor="let student of selectedStudentRows">-->
 <!--                            <td>{{student._email}}</td>-->
 <!--                        </tr>-->
 <!--                    </div>-->
@@ -112,11 +112,26 @@
                 <small class="text-muted">Ez a sablon a kiválasztott tanfolyamhoz tartozik</small>
             </div>
             <div class="card-body">
-                <div class="example-header">
+                <div class="example-header card-padding">
                     <iframe height="620" align="middle" width="100%" border="0"
                             [src]="selectedTemplateUrl | safe"></iframe>
 
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" *ngIf="selectedTemplateUrl">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Sablon átmásolása</h4>
+                <small class="text-muted">Másolj ki mindent az előző dokumentumból és illeszd be ide. Erre azért van szükség,
+                mert ebből a programból nem férek hozzá a Google Docs-hoz</small>
+            </div>
+            <div class="card-body">
             </div>
         </div>
     </div>

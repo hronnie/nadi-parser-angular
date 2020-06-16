@@ -34,7 +34,7 @@ export class TableComponent implements OnInit {
     googleSheetAccessToken = '1iYSCV_2HwzyTD2QIRqEmkQTSEB54qteAAyzFWb1DemY'; // test data
     // googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo'; // orig data
     googleSheetRange = 'A2:CM984';
-    selectedRows: any [];
+    selectedStudentRows: any [];
     trainingSelectItems = [];
     selectedTraining: any;
     trainingInviteEmails: string[];
@@ -66,7 +66,7 @@ export class TableComponent implements OnInit {
     }
 
     onSelectionChanged() {
-        this.selectedRows = this.gridApi.getSelectedRows();
+        this.selectedStudentRows = this.gridApi.getSelectedRows();
     }
 
     generateColumns() {
@@ -92,7 +92,6 @@ export class TableComponent implements OnInit {
         this.output = "Processing submission...";
         await this.gauth.loadClient();
         await this.gauth.loadSheetsAPI();
-
         gapi.client.sheets.spreadsheets.values.get({
             spreadsheetId: this.model.sheetId,
             range: this.model.range
