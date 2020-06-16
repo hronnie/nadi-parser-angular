@@ -39,7 +39,8 @@ export class TableComponent implements OnInit {
     selectedTraining: any;
     trainingInviteEmails: string[];
     trainingDate = moment();
-    templateUrl: string;
+    templateUrlMap: Map<string, string>;
+    selectedTemplateUrl: string;
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -99,8 +100,7 @@ export class TableComponent implements OnInit {
             this.isLoading = false;
             this.output = "Data found: \n";
             this.rows = this.origRows = this.studentParserService.parseRawSheetData(response.result.values);
-            debugger;
-            this.templateUrl = response.result.values[0][90];
+            this.populateTemplateUrlArray(response.result.values);
             this.cd.detectChanges();
         }, (error) => {
             this.output = "Error: \n";
@@ -109,9 +109,33 @@ export class TableComponent implements OnInit {
         });
     }
 
+    populateTemplateUrlArray(rawValues: any[][]) {
+        this.templateUrlMap = new Map<string, string>();
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_TWO, rawValues[1][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_THREE, rawValues[2][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_THREE_C, rawValues[3][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_FOUR_A, rawValues[4][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_FOUR_B, rawValues[5][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_FOUR_B_2, rawValues[6][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_FIVE, rawValues[7][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_SIX, rawValues[8][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_SEVEN, rawValues[9][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_EIGHT_1, rawValues[10][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_UTI_1, rawValues[11][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_UTI_2, rawValues[12][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_UTI_3, rawValues[13][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_UTI_3_PLUS, rawValues[14][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_UTI_4, rawValues[15][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_TK_1, rawValues[16][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_TK_2, rawValues[17][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_TK_3, rawValues[18][90]);
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_TK_4, rawValues[19][90]);
+    }
+
     onTrainingSelect($event: any) {
         this.rows = this.studentFilterService.filterDataByLevel($event.value, this.origRows, this.trainingDate);
         this.trainingInviteEmails = this.rows?.map(item => item._email);
+        this.selectedTemplateUrl = this.templateUrlMap.get($event.value);
     }
 
     private generateTrainingSelectItems(studentColumns: any) {

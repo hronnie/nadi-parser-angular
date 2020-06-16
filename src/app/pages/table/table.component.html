@@ -86,23 +86,36 @@
                             (gridReady)="onGridReady($event)"
                     >
                     </ag-grid-angular>
-                    <div class="example-header">
-                        Selection:
-                        <tr *ngFor="let student of selectedRows">
-                            <td>{{student._email}}</td>
-                        </tr>
-                    </div>
-                    <div class="example-header">
-                        Ezek az email címek jöhetnek:
-                        <tr *ngFor="let email of trainingInviteEmails">
-                            <td>{{email}}</td>
-                        </tr>
-                    </div>
-                    <div class="example-header">
-                        <iframe height="620" align="middle" width="100%" border="0"
-                                [src]="templateUrl | safe"></iframe>
+<!--                    <div class="example-header">-->
+<!--                        Selection:-->
+<!--                        <tr *ngFor="let student of selectedRows">-->
+<!--                            <td>{{student._email}}</td>-->
+<!--                        </tr>-->
+<!--                    </div>-->
+<!--                    <div class="example-header">-->
+<!--                        Ezek az email címek jöhetnek:-->
+<!--                        <tr *ngFor="let email of trainingInviteEmails">-->
+<!--                            <td>{{email}}</td>-->
+<!--                        </tr>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    </div>
+<div class="row" *ngIf="selectedTemplateUrl">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Sablon szerkesztése</h4>
+                <small class="text-muted">Ez a sablon a kiválasztott tanfolyamhoz tartozik</small>
+            </div>
+            <div class="card-body">
+                <div class="example-header">
+                    <iframe height="620" align="middle" width="100%" border="0"
+                            [src]="selectedTemplateUrl | safe"></iframe>
+
                 </div>
             </div>
         </div>
