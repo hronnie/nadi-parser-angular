@@ -180,4 +180,8 @@ export class TableComponent implements OnInit {
     onDateSelect($event: NgbDate) {
         this.trainingDate = moment($event.year + '-' + $event.month + '-' + $event.day, "YYYY-MM-DD");
     }
+
+    sendEmail() {
+
+    }
 }
