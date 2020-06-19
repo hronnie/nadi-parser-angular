@@ -14,8 +14,8 @@ export const ROUTES: RouteInfo[] = [
     // { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },
     // { path: '/notifications', title: 'Notifications',     icon:'nc-bell-55',    class: '' },
     {path: '/invites', title: 'Tanfolyam meghívók', icon: 'nc-tile-56', class: ''},
-    {path: '/settings', title: 'Beállítások', icon: 'nc-settings-gear-65', class: ''},
-    {path: '/help', title: 'Segítség', icon: 'nc-bulb-63', class: ''},
+    // {path: '/settings', title: 'Beállítások', icon: 'nc-settings-gear-65', class: ''},
+    // {path: '/help', title: 'Segítség', icon: 'nc-bulb-63', class: ''},
     // { path: '/upgrade',       title: 'Upgrade to PRO',    icon:'nc-spaceship',  class: 'active-pro' },
 ];
 

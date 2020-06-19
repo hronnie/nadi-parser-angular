@@ -10,8 +10,7 @@
                         <div class="col-md-4 mt-2 m-auto ">
                             <div *ngIf="isSignedIn">
                                 <blockquote class="blockquote">
-                                    <p class="mb-0">Sikerült kapcsolódni a tanítványokat tartalmazó Google Sheet-hez.
-                                    Ezzel az email címeddel vagy bejelentkezve: <strong>{{signedInEmailAddress}}</strong></p>
+                                    <p class="mb-0">Sikerült kapcsolódni a tanítványokat tartalmazó Google Sheet-hez.<strong>{{signedInEmailAddress}}</strong></p>
                                     <button type="button" class="btn btn-info sign-out-button" (click)="signOut()">Kijelentkezés</button>
                                 </blockquote>
                             </div>
@@ -65,6 +64,9 @@
                             (click)="saveExcelCode()">
                         Excel kód mentése
                     </button>
+                    <div class="alert alert-success" role="alert" *ngIf="saveExcelSuccess">
+                        Sikerült elmenteni az excel kódot
+                    </div>
                 </div>
             </div>
         </div>
@@ -103,7 +105,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Tanfolyamok</h4>
                         <small class="text-muted">Először válaszd ki, hogy melyik tanfolyamra szeretnél meghívókat küldeni.</small>
-                        <div class="alert alert-danger" role="alert" *ngIf="excelLoadError">
+                        <div class="alert alert-danger dark-font" role="alert" *ngIf="excelLoadError" >
                             Sajnos nem sikerült az excel adatokat betölteni, valami Google-ös hiba miatt. Ez általában egyből eltűnik,
                             ha frissíted a böngésződet.
                         </div>

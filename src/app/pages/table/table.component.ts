@@ -80,6 +80,7 @@ export class TableComponent implements OnInit {
     giveNewExcelCode = false;
     emailSendSuccess = false;
     excelLoadError: boolean;
+    saveExcelSuccess = false;
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -88,8 +89,7 @@ export class TableComponent implements OnInit {
                 private studentFilterService: StudentFilterService,
                 private cdRef: ChangeDetectorRef) {
         window.onSignIn = (googleUser) => this.onSignIn(googleUser);
-        this.output = "Enter a spreadsheet id and range then press submit. "
-            + "Ensure that third-party cookies are enabled in your browser settings.";
+
     }
 
     ngOnInit() {
@@ -121,7 +121,6 @@ export class TableComponent implements OnInit {
         this.gdata.onSignIn(googleUser);
         this.isSignedIn = this.gdata.isSignedIn;
         this.googleDisplay = this.gdata.googleDisplay;
-        this.signedInEmailAddress = googleUser.Ut?.Eu;
         this.cd.detectChanges();
     }
 
@@ -182,6 +181,7 @@ export class TableComponent implements OnInit {
         this.trainingInviteEmails = this.rows?.map(item => item._email);
         this.selectedTemplateUrl = this.templateUrlMap.get($event.value);
         this.emailSendSuccess = false;
+        this.cd.detectChanges();
     }
 
     private generateTrainingSelectItems(studentColumns: any) {
@@ -224,6 +224,7 @@ export class TableComponent implements OnInit {
     saveExcelCode() {
         localStorage.setItem('excelCode', this.inputExcelCode);
         this.giveNewExcelCode = false;
+        this.saveExcelSuccess = true;
         this.cdRef.detectChanges();
     }
 
