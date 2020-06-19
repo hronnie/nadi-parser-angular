@@ -10,7 +10,8 @@
                         <div class="col-md-4 mt-2 m-auto ">
                             <div *ngIf="isSignedIn">
                                 <blockquote class="blockquote">
-                                    <p class="mb-0">Sikerült kapcsolódni a tanítványokat tartalmazó Google Sheet-hez</p>
+                                    <p class="mb-0">Sikerült kapcsolódni a tanítványokat tartalmazó Google Sheet-hez.
+                                    Ezzel az email címeddel vagy bejelentkezve: <strong>{{signedInEmailAddress}}</strong></p>
                                     <button type="button" class="btn btn-info sign-out-button" (click)="signOut()">Kijelentkezés</button>
                                 </blockquote>
                             </div>
@@ -30,142 +31,182 @@
 </div>
 
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title"> Válaszd ki, hogy mikor van a tanfolyam időpontja </h4>
-                <small class="text-muted">Ha semmit nem választasz ki, akkor a mai dátumot veszi figyelembe</small>
+
+<ng-container *ngIf="isSignedIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" *ngIf="googleSheetAccessToken">
+                <div class="card-header">
+                    <h4 class="card-title">Találtam megadott excel kódot, de ha szeretnél egy másikat megadni, akkor a gombra kattintva megteheted</h4>
+                    <button type="submit" class="btn btn-primary mb-2"
+                            (click)="newExcelCode()">
+                        Új excel kód megadása
+                    </button>
+                </div>
             </div>
-            <div class="card-body">
-                <div class="container mt-5">
-                    <div class="row mt-5">
-                        <div class="col-md-4 mt-2 m-auto ">
-                            <ngb-datepicker (dateSelect)="onDateSelect($event)" #d></ngb-datepicker>
+            <div class="card" *ngIf="!googleSheetAccessToken || giveNewExcelCode">
+                <div class="card-header">
+                    <h4 class="card-title">Kérlek add meg az google sheet elérhetőségét (Előfordul, hogy már megadtad, de a böngésző 'elvesztette')</h4>
+                </div>
+                <div class="card-body">
+                    Ezt úgy tudod megtenni, hogy először is nyisd meg azt a google sheet-et, ami tartalmazza
+                    a tanítványokat (a régi rendszerből ki van exportálva)<br/>
+                    Ezután a linkjéből másold ki a /d/ és /edit közti kódot ahogy a következő kiemelt részben látod:
+                    <div class="alert alert-dark dark-font" role="alert">
+                        https://docs.google.com/spreadsheets/d/<b>1isdfsdfsdfasdfsadfsdafAAyzFWb1DemY</b>/edit#gid=0
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputExcelCode" class="col-sm-2 col-form-label">Google sheet kódja</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputExcelCode" placeholder="Excel kód" [(ngModel)]="inputExcelCode">
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-md-4 mt-2 m-auto ">
-                            A kiválasztott dátum: <strong>{{trainingDate | date}}</strong>
+                    <button type="submit" class="btn btn-primary mb-2"
+                            (click)="saveExcelCode()">
+                        Excel kód mentése
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <ng-container *ngIf="googleSheetAccessToken">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Válaszd ki, hogy mikor van a tanfolyam időpontja </h4>
+                        <small class="text-muted">Ha semmit nem választasz ki, akkor a mai dátumot veszi figyelembe</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="container mt-5">
+                            <div class="row mt-5">
+                                <div class="col-md-4 mt-2 m-auto ">
+                                    <ngb-datepicker (dateSelect)="onDateSelect($event)" #d></ngb-datepicker>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col-md-4 mt-2 m-auto ">
+                                    A kiválasztott dátum: <strong>{{trainingDate | date}}</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Tanfolyamok</h4>
-                <small class="text-muted">Először válaszd ki, hogy melyik tanfolyamra szeretnél meghívókat küldeni.</small>
-            </div>
-            <div class="card-body">
-                <div class="select-training-drop-down">
-                    <ng-select
-                            (change)="onTrainingSelect($event)"
-                            [(ngModel)]="selectedTraining"
-                            [clearable]="false"
-                            [closeOnSelect]="true"
-                            [hideSelected]="false"
-                            [items]="trainingSelectItems"
-                            bindLabel="name"
-                            placeholder="All">
-                    </ng-select>
-                </div>
-                <div class="card-padding">
-                    <ag-grid-angular
-                            style="max-width: 1800px; height: 500px;"
-                            class="ag-theme-alpine"
-                            [rowData]="rows"
-                            [columnDefs]="columns"
-                            [rowSelection]="'multiple'"
-                            (selectionChanged)="onSelectionChanged()"
-                            (gridReady)="onGridReady($event)"
-                    >
-                    </ag-grid-angular>
-<!--                    <div class="example-header">-->
-<!--                        Selection:-->
-<!--                        <tr *ngFor="let student of selectedStudentRows">-->
-<!--                            <td>{{student._email}}</td>-->
-<!--                        </tr>-->
-<!--                    </div>-->
-<!--                    <div class="example-header">-->
-<!--                        Ezek az email címek jöhetnek:-->
-<!--                        <tr *ngFor="let email of trainingInviteEmails">-->
-<!--                            <td>{{email}}</td>-->
-<!--                        </tr>-->
-<!--                    </div>-->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row" *ngIf="selectedTemplateUrl">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Sablon szerkesztése</h4>
-                <small class="text-muted">Ez a sablon a kiválasztott tanfolyamhoz tartozik</small>
-            </div>
-            <div class="card-body">
-                <div class="example-header card-padding">
-                    <iframe height="620" align="middle" width="100%" border="0"
-                            [src]="selectedTemplateUrl | safe"></iframe>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="row" *ngIf="selectedTemplateUrl">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Sablon átmásolása</h4>
-                <small class="text-muted">Másolj ki mindent az előző dokumentumból és illeszd be ide. Erre azért van szükség,
-                mert ebből a programból nem férek hozzá a Google Docs-hoz</small>
-            </div>
-            <div class="card-body card-padding">
-                <angular-editor [config]="editorConfig" [(ngModel)]="emailTemplateHtmlContent"></angular-editor>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--<div class="row" *ngIf="selectedTemplateUrl">-->
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">Email küldés</h4>
-                <small class="text-muted">Most már megvannak a tanítványok és a sablon, jöhet az email kiküldése.
-                Csak azoknak a tanítványoknak megy ki az email, akiket be is jelöltél a jelölőnégyzettel. </small>
-            </div>
-            <div class="card-body">
-                <div class="alert alert-warning" role="alert" *ngIf="!selectedStudentRows">
-                    Legalább egy tanítványt jelölj be a listára, mert csak a kijelölt tanítványoknak lesz kiküldve az email.
-                </div>
-                <div class="alert alert-warning" role="alert" *ngIf="!emailTemplateHtmlContent">
-                    A sablont másold át kérlek, mert a google docs tartalmához nem fér hozzá ez a program.
-                </div>
-                <div class="form-group row">
-                    <label for="inputEmail" class="col-sm-2 col-form-label">Email tárgya (*):</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email tárgya" [(ngModel)]="emailSubject">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Tanfolyamok</h4>
+                        <small class="text-muted">Először válaszd ki, hogy melyik tanfolyamra szeretnél meghívókat küldeni.</small>
+                        <div class="alert alert-danger" role="alert" *ngIf="excelLoadError">
+                            Sajnos nem sikerült az excel adatokat betölteni, valami Google-ös hiba miatt. Ez általában egyből eltűnik,
+                            ha frissíted a böngésződet.
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="select-training-drop-down">
+                            <ng-select
+                                    (change)="onTrainingSelect($event)"
+                                    [(ngModel)]="selectedTraining"
+                                    [clearable]="false"
+                                    [closeOnSelect]="true"
+                                    [hideSelected]="false"
+                                    [items]="trainingSelectItems"
+                                    bindLabel="name"
+                                    placeholder="All">
+                            </ng-select>
+                        </div>
+                        <div class="card-padding">
+                            <ag-grid-angular
+                                    style="max-width: 1800px; height: 500px;"
+                                    class="ag-theme-alpine"
+                                    [rowData]="rows"
+                                    [columnDefs]="columns"
+                                    [rowSelection]="'multiple'"
+                                    (selectionChanged)="onSelectionChanged()"
+                                    (gridReady)="onGridReady($event)"
+                            >
+                            </ag-grid-angular>
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2"
-                        (click)="sendEmail()" [disabled]="!selectedStudentRows || !emailTemplateHtmlContent || !emailSubject">
-                    Email küldése
-                </button>
-
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="row" *ngIf="selectedTemplateUrl">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Sablon szerkesztése</h4>
+                        <small class="text-muted">Ez a sablon a kiválasztott tanfolyamhoz tartozik</small>
+                    </div>
+                    <div class="card-body">
+                        <div class="example-header card-padding">
+                            <iframe height="620" align="middle" width="100%" border="0"
+                                    [src]="selectedTemplateUrl | safe"></iframe>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" *ngIf="selectedTemplateUrl">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Sablon átmásolása</h4>
+                        <small class="text-muted">Másolj ki mindent az előző dokumentumból és illeszd be ide. Erre azért van szükség,
+                            mert ebből a programból nem férek hozzá a Google Docs-hoz</small>
+                    </div>
+                    <div class="card-body card-padding">
+                        <angular-editor [config]="editorConfig" [(ngModel)]="emailTemplateHtmlContent"></angular-editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="selectedTemplateUrl">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Email küldés</h4>
+                        <small class="text-muted">Most már megvannak a tanítványok és a sablon, jöhet az email kiküldése.
+                            Csak azoknak a tanítványoknak megy ki az email, akiket be is jelöltél a jelölőnégyzettel. </small>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-warning" role="alert" *ngIf="!selectedStudentRows">
+                            Legalább egy tanítványt jelölj be a listára, mert csak a kijelölt tanítványoknak lesz kiküldve az email.
+                        </div>
+                        <div class="alert alert-warning" role="alert" *ngIf="!emailTemplateHtmlContent">
+                            A sablont másold át kérlek, mert a google docs tartalmához nem fér hozzá ez a program.
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail" class="col-sm-2 col-form-label">Email tárgya (*):</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputEmail" placeholder="Email tárgya" [(ngModel)]="emailSubject">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2"
+                                (click)="sendEmail()" [disabled]="!selectedStudentRows || !emailTemplateHtmlContent || !emailSubject || emailSendSuccess">
+                            Email küldése
+                        </button>
+                        <div class="alert alert-success" role="alert" *ngIf="emailSendSuccess">
+                            <h4 class="alert-heading">Emailek elküldve!</h4>
+                            <p>Sikeresen kiküldtél minden levelet!</p>
+                            <hr>
+                            <p class="mb-0">Annak érdekében, hogy elkerüljük a dupla küldéseket, a küldés gomb le lett tiltva.
+                            Változtasd meg a dátumot, vagy válassz más tanfolyamot, és máris küldhetsz újra levelet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

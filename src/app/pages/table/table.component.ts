@@ -36,9 +36,8 @@ export class TableComponent implements OnInit {
     rows = [];
     origRows = [];
     columns = [];
-    googleSheetAccessToken = '1iYSCV_2HwzyTD2QIRqEmkQTSEB54qteAAyzFWb1DemY'; // test data
-    // googleSheetAccessToken = '1D3zG11p9T2JUBWZa7ubi-a-FXe14BAEgEN9_Dx2UyGo'; // orig data
-    googleSheetRange = 'A2:CM984';
+    googleSheetAccessToken;
+    googleSheetRange = 'A2:CM1500';
     selectedStudentRows: any [];
     trainingSelectItems = [];
     selectedTraining: any;
@@ -47,6 +46,7 @@ export class TableComponent implements OnInit {
     templateUrlMap: Map<string, string>;
     selectedTemplateUrl: string;
     emailTemplateHtmlContent: string;
+    signedInEmailAddress: string;
     editorConfig: AngularEditorConfig = {
         editable: true,
         spellcheck: true,
@@ -76,12 +76,17 @@ export class TableComponent implements OnInit {
         ]
     };
     emailSubject = "";
+    inputExcelCode: string;
+    giveNewExcelCode = false;
+    emailSendSuccess = false;
+    excelLoadError: boolean;
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
                 public gauth: GoogleAuthService,
                 private studentParserService: StudentParserService,
-                private studentFilterService: StudentFilterService) {
+                private studentFilterService: StudentFilterService,
+                private cdRef: ChangeDetectorRef) {
         window.onSignIn = (googleUser) => this.onSignIn(googleUser);
         this.output = "Enter a spreadsheet id and range then press submit. "
             + "Ensure that third-party cookies are enabled in your browser settings.";
@@ -93,6 +98,10 @@ export class TableComponent implements OnInit {
         this.model.range = this.googleSheetRange;
         this.loadSheetData();
         this.generateTrainingSelectItems(StudentColumns.generateColumns());
+        if (localStorage.getItem('excelCode')) {
+            this.inputExcelCode = localStorage.getItem('excelCode');
+            this.googleSheetAccessToken = localStorage.getItem('excelCode');
+        }
     }
 
     onGridReady(params) {
@@ -112,6 +121,7 @@ export class TableComponent implements OnInit {
         this.gdata.onSignIn(googleUser);
         this.isSignedIn = this.gdata.isSignedIn;
         this.googleDisplay = this.gdata.googleDisplay;
+        this.signedInEmailAddress = googleUser.Ut?.Eu;
         this.cd.detectChanges();
     }
 
@@ -128,7 +138,7 @@ export class TableComponent implements OnInit {
         await this.gauth.loadClient();
         await this.gauth.loadSheetsAPI();
         gapi.client.sheets.spreadsheets.values.get({
-            spreadsheetId: this.model.sheetId,
+            spreadsheetId: this.googleSheetAccessToken,
             range: this.model.range
         }).then((response) => {
             this.isLoading = false;
@@ -136,9 +146,9 @@ export class TableComponent implements OnInit {
             this.rows = this.origRows = this.studentParserService.parseRawSheetData(response.result.values);
             this.populateTemplateUrlArray(response.result.values);
             this.cd.detectChanges();
+            this.excelLoadError = false;
         }, (error) => {
-            this.output = "Error: \n";
-            this.output += error.result.error.message + "\n";
+            this.excelLoadError = true;
             this.cd.detectChanges();
         });
     }
@@ -171,6 +181,7 @@ export class TableComponent implements OnInit {
         this.rows = this.studentFilterService.filterDataByLevel($event.value, this.origRows, this.trainingDate);
         this.trainingInviteEmails = this.rows?.map(item => item._email);
         this.selectedTemplateUrl = this.templateUrlMap.get($event.value);
+        this.emailSendSuccess = false;
     }
 
     private generateTrainingSelectItems(studentColumns: any) {
@@ -185,14 +196,15 @@ export class TableComponent implements OnInit {
 
     onDateSelect($event: NgbDate) {
         this.trainingDate = moment($event.year + '-' + $event.month + '-' + $event.day, "YYYY-MM-DD");
+        this.emailSendSuccess = false;
     }
 
     sendEmail() {
         const emails = this.selectedStudentRows.map(item => item._email);
         for (const email of emails) {
-            debugger;
-            // this.sendOneEmail(email, this.emailSubject, this.emailTemplateHtmlContent);
+            this.sendOneEmail(email, this.emailSubject, this.emailTemplateHtmlContent);
         }
+        this.emailSendSuccess = true;
     }
 
     sendOneEmail(toEmail: string, emailSubject: string, emailBody: string) {
@@ -204,8 +216,19 @@ export class TableComponent implements OnInit {
             From : environment.smtpFrom,
             Subject : emailSubject,
             Body : emailBody
-        }).then(
-            message => alert(message)
-        );
+        }).then((response) => {
+            console.log('email sent to: ', toEmail);
+        });
+    }
+
+    saveExcelCode() {
+        localStorage.setItem('excelCode', this.inputExcelCode);
+        this.giveNewExcelCode = false;
+        this.cdRef.detectChanges();
+    }
+
+    newExcelCode() {
+        this.giveNewExcelCode = true;
+        this.cdRef.detectChanges();
     }
 }
