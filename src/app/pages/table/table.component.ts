@@ -8,6 +8,10 @@ import {XLS_FIELD_NAMES} from '../../shared/model/level-consts';
 import * as moment from 'moment';
 import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {AngularEditorConfig} from '@kolkov/angular-editor';
+import '../../../assets/js/smtp.js';
+import {environment} from '../../../environments/environment';
+
+declare let Email : any;
 
 declare global {
     interface Window { onSignIn: (googleuser: any) => void; }
@@ -71,6 +75,7 @@ export class TableComponent implements OnInit {
             },
         ]
     };
+    emailSubject = "";
 
     constructor(public gdata: GoogleAuthService,
                 private cd: ChangeDetectorRef,
@@ -140,6 +145,7 @@ export class TableComponent implements OnInit {
 
     populateTemplateUrlArray(rawValues: any[][]) {
         this.templateUrlMap = new Map<string, string>();
+        this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_ONE, rawValues[0][90]);
         this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_TWO, rawValues[1][90]);
         this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_THREE, rawValues[2][90]);
         this.templateUrlMap.set(XLS_FIELD_NAMES.LEVEL_THREE_C, rawValues[3][90]);
@@ -171,8 +177,8 @@ export class TableComponent implements OnInit {
         const levelColumns = studentColumns.filter(item => !item.field.startsWith('_'));
         this.trainingSelectItems = levelColumns.map(item => {
             return {
-                name: item.field !== XLS_FIELD_NAMES.LEVEL_ONE ?  item.headerName + ' tanfolyam' : 'Összes tanfolyam',
-                value: item.field !== XLS_FIELD_NAMES.LEVEL_ONE ? item.field : XLS_FIELD_NAMES.LEVEL_ALL
+                name: item.headerName + ' tanfolyam',
+                value: item.field
             }
         })
     }
@@ -182,6 +188,24 @@ export class TableComponent implements OnInit {
     }
 
     sendEmail() {
+        const emails = this.selectedStudentRows.map(item => item._email);
+        for (const email of emails) {
+            debugger;
+            // this.sendOneEmail(email, this.emailSubject, this.emailTemplateHtmlContent);
+        }
+    }
 
+    sendOneEmail(toEmail: string, emailSubject: string, emailBody: string) {
+        Email.send({
+            Host : environment.smtpHost,
+            Username : environment.smtpUsername,
+            Password : environment.smtpPassword,
+            To : toEmail,
+            From : environment.smtpFrom,
+            Subject : emailSubject,
+            Body : emailBody
+        }).then(
+            message => alert(message)
+        );
     }
 }

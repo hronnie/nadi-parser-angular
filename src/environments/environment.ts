@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+    production: false,
+    smtpHost: "smtp.elasticemail.com",
+    smtpUsername: "h.roni23@gmail.com",
+    smtpPassword: "81383403EDA7E6457C03B6F78B18BA8B80CF",
+    smtpFrom: "h.roni23@gmail.com",
 };

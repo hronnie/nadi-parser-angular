@@ -18,9 +18,14 @@ export class StudentFilterService {
                 return origData;
                 break;
             }
+            case XLS_FIELD_NAMES.LEVEL_ONE: {
+                return origData.filter(item => {
+                    return !this.isUserNotDisabled(item);
+                })
+                break;
+            }
             case XLS_FIELD_NAMES.LEVEL_TWO: {
                 return origData.filter(item => {
-                    console.log(item._name);
                     return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_ONE])
                         && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_TWO])
                         && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
