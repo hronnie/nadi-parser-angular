@@ -23,14 +23,17 @@ export class StudentColumns {
                 headerCheckboxSelection: true,
                 headerCheckboxSelectionFilteredOnly: true,
                 checkboxSelection: true,
+                width: 260
             },
             {
                 field: XLS_FIELD_NAMES.DATA_EMAIL,
                 headerName: 'Email',
+                width: 280
             },
             {
                 field: XLS_FIELD_NAMES.DATA_REMARK,
                 headerName: 'Megjegyzés',
+                width: 280
             },
             {
                 field: XLS_FIELD_NAMES.LEVEL_ONE,

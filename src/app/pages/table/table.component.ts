@@ -153,4 +153,5 @@ export class TableComponent implements OnInit {
     newExcelCode() {
         this.giveNewExcelCode = true;
     }
+
 }
