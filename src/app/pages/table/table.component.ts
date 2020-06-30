@@ -83,11 +83,9 @@ export class TableComponent implements OnInit {
     saveExcelSuccess = false;
 
     constructor(public gdata: GoogleAuthService,
-                private cd: ChangeDetectorRef,
                 public gauth: GoogleAuthService,
                 private studentParserService: StudentParserService,
-                private studentFilterService: StudentFilterService,
-                private cdRef: ChangeDetectorRef) {
+                private studentFilterService: StudentFilterService) {
         window.onSignIn = (googleUser) => this.onSignIn(googleUser);
 
     }
@@ -121,14 +119,12 @@ export class TableComponent implements OnInit {
         this.gdata.onSignIn(googleUser);
         this.isSignedIn = this.gdata.isSignedIn;
         this.googleDisplay = this.gdata.googleDisplay;
-        this.cd.detectChanges();
     }
 
     public async signOut() {
         await this.gdata.signOut();
         this.isSignedIn = this.gdata.isSignedIn;
         this.googleDisplay = this.gdata.googleDisplay;
-        this.cd.detectChanges();
     }
 
     async loadSheetData() {
@@ -144,11 +140,9 @@ export class TableComponent implements OnInit {
             this.output = "Data found: \n";
             this.rows = this.origRows = this.studentParserService.parseRawSheetData(response.result.values);
             this.populateTemplateUrlArray(response.result.values);
-            this.cd.detectChanges();
             this.excelLoadError = false;
         }, (error) => {
             this.excelLoadError = true;
-            this.cd.detectChanges();
         });
     }
 
@@ -181,7 +175,6 @@ export class TableComponent implements OnInit {
         this.trainingInviteEmails = this.rows?.map(item => item._email);
         this.selectedTemplateUrl = this.templateUrlMap.get($event.value);
         this.emailSendSuccess = false;
-        this.cd.detectChanges();
     }
 
     private generateTrainingSelectItems(studentColumns: any) {
@@ -225,11 +218,9 @@ export class TableComponent implements OnInit {
         localStorage.setItem('excelCode', this.inputExcelCode);
         this.giveNewExcelCode = false;
         this.saveExcelSuccess = true;
-        this.cdRef.detectChanges();
     }
 
     newExcelCode() {
         this.giveNewExcelCode = true;
-        this.cdRef.detectChanges();
     }
 }
