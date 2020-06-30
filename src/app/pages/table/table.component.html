@@ -29,8 +29,6 @@
     </div>
 </div>
 
-
-
 <ng-container *ngIf="isSignedIn">
     <div class="row">
         <div class="col-md-12">
@@ -71,7 +69,6 @@
             </div>
         </div>
     </div>
-
 
     <ng-container *ngIf="googleSheetAccessToken">
         <div class="row">
@@ -134,77 +131,6 @@
                                     (gridReady)="onGridReady($event)"
                             >
                             </ag-grid-angular>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" *ngIf="selectedTemplateUrl">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Sablon szerkesztése</h4>
-                        <small class="text-muted">Ez a sablon a kiválasztott tanfolyamhoz tartozik</small>
-                    </div>
-                    <div class="card-body">
-                        <div class="example-header card-padding">
-                            <iframe height="620" align="middle" width="100%" border="0"
-                                    [src]="selectedTemplateUrl | safe"></iframe>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row" *ngIf="selectedTemplateUrl">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Sablon átmásolása</h4>
-                        <small class="text-muted">Másolj ki mindent az előző dokumentumból és illeszd be ide. Erre azért van szükség,
-                            mert ebből a programból nem férek hozzá a Google Docs-hoz</small>
-                    </div>
-                    <div class="card-body card-padding">
-                        <angular-editor [config]="editorConfig" [(ngModel)]="emailTemplateHtmlContent"></angular-editor>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" *ngIf="selectedTemplateUrl">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Email küldés</h4>
-                        <small class="text-muted">Most már megvannak a tanítványok és a sablon, jöhet az email kiküldése.
-                            Csak azoknak a tanítványoknak megy ki az email, akiket be is jelöltél a jelölőnégyzettel. </small>
-                    </div>
-                    <div class="card-body">
-                        <div class="alert alert-warning" role="alert" *ngIf="!selectedStudentRows">
-                            Legalább egy tanítványt jelölj be a listára, mert csak a kijelölt tanítványoknak lesz kiküldve az email.
-                        </div>
-                        <div class="alert alert-warning" role="alert" *ngIf="!emailTemplateHtmlContent">
-                            A sablont másold át kérlek, mert a google docs tartalmához nem fér hozzá ez a program.
-                        </div>
-                        <div class="form-group row">
-                            <label for="inputEmail" class="col-sm-2 col-form-label">Email tárgya (*):</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputEmail" placeholder="Email tárgya" [(ngModel)]="emailSubject">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-2"
-                                (click)="sendEmail()" [disabled]="!selectedStudentRows || !emailTemplateHtmlContent || !emailSubject || emailSendSuccess">
-                            Email küldése
-                        </button>
-                        <div class="alert alert-success" role="alert" *ngIf="emailSendSuccess">
-                            <h4 class="alert-heading">Emailek elküldve!</h4>
-                            <p>Sikeresen kiküldtél minden levelet!</p>
-                            <hr>
-                            <p class="mb-0">Annak érdekében, hogy elkerüljük a dupla küldéseket, a küldés gomb le lett tiltva.
-                            Változtasd meg a dátumot, vagy válassz más tanfolyamot, és máris küldhetsz újra levelet.</p>
                         </div>
                     </div>
                 </div>
