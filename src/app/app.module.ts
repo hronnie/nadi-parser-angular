@@ -17,7 +17,6 @@ import {JsLoaderService} from './shared/services/js-loader.service';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import {AgGridModule} from 'ag-grid-angular';
 import {NgSelectModule} from '@ng-select/ng-select';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import {HttpClientModule} from '@angular/common/http';
 
 
@@ -39,7 +38,6 @@ import {HttpClientModule} from '@angular/common/http';
         NgxDatatableModule,
         AgGridModule.withComponents([]),
         NgSelectModule,
-        AngularEditorModule,
         HttpClientModule
     ],
     providers: [
