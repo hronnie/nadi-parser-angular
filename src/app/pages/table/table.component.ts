@@ -44,6 +44,8 @@ export class TableComponent implements OnInit {
     giveNewExcelCode = false;
     excelLoadError: boolean;
     saveExcelSuccess = false;
+    defaultColDef: any;
+
 
     constructor(public gdata: GoogleAuthService,
                 public gauth: GoogleAuthService,
@@ -63,6 +65,10 @@ export class TableComponent implements OnInit {
             this.inputExcelCode = localStorage.getItem('excelCode');
             this.googleSheetAccessToken = localStorage.getItem('excelCode');
         }
+        this.defaultColDef = {
+            resizable: true,
+            sortable: true
+        };
     }
 
     onGridReady(params) {
