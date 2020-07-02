@@ -126,6 +126,7 @@
                                     class="ag-theme-alpine"
                                     [rowData]="rows"
                                     [columnDefs]="columns"
+                                    [defaultColDef]="defaultColDef"
                                     [rowSelection]="'multiple'"
                                     (selectionChanged)="onSelectionChanged()"
                                     (gridReady)="onGridReady($event)"
