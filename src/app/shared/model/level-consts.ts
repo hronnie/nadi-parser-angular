@@ -30,7 +30,7 @@ export const XLS_FIELD_NAMES = {
 export const LEVEL_WAITING_TIMES = {
     LEVEL_TWO: 90,
     LEVEL_THREE: 180,
-    LEVEL_FOUR_A: 180,
+    LEVEL_FOUR_A: 90,
     LEVEL_FOUR_B: 90,
     LEVEL_FOUR_B_2: 90,
     LEVEL_FIVE: 90,
