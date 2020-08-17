@@ -67,7 +67,8 @@ export class TableComponent implements OnInit {
         }
         this.defaultColDef = {
             resizable: true,
-            sortable: true
+            sortable: true,
+            filter: true
         };
     }
 
