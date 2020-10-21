@@ -12,7 +12,6 @@ export class StudentFilterService {
     trainingDate: any;
 
     filterDataByLevel(level: string, origData, trainingDate) {
-        debugger;
         this.trainingDate = moment(trainingDate);
         switch (level) {
             case XLS_FIELD_NAMES.LEVEL_ALL: {

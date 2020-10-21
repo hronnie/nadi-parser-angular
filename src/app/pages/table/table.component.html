@@ -137,5 +137,26 @@
                 </div>
             </div>
         </div>
+
+        <ng-container *ngIf="selectedStudentRows?.length > 0">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Email címek</h4>
+                            <small class="text-muted">Itt ki tudod másolni a kiválasztott email címeket</small>
+                        </div>
+                        <div class="card-body">
+                            <textarea class="form-control" placeholder="Here can be your nice text" rows="6" #selectedEmailsTextarea [value]="" >
+                                {{getSelectedEmail()}}
+                            </textarea>
+                            <button type="button" (click)="copyInputMessage(selectedEmailsTextarea)"
+                                    class="btn btn-default">Másolás (ctrl - c)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
     </ng-container>
 </ng-container>

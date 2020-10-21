@@ -155,4 +155,16 @@ export class TableComponent implements OnInit {
         this.giveNewExcelCode = true;
     }
 
+    getSelectedEmail() {
+        return this.selectedStudentRows.map(student => {
+            return student._email;
+        }).join(', ');
+    }
+
+    copyInputMessage(userinput: any) {
+        userinput.value = userinput.value.trim();
+        userinput.select();
+        document.execCommand('copy');
+        userinput.setSelectionRange(0, 0);
+    }
 }
