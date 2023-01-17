@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
     rows = [];
     origRows = [];
     columns = [];
-    googleSheetAccessToken;
+    googleSheetAccessToken = '1QUgtDPQjAqKw9OtyDxxMFdRYxO8jDdWhyD00wUzE4p8';
     googleSheetRange = 'A2:CM1500';
     selectedStudentRows: any [];
     trainingSelectItems = [];
@@ -40,11 +40,12 @@ export class TableComponent implements OnInit {
     trainingInviteEmails: string[];
     trainingDate = moment();
     signedInEmailAddress: string;
-    inputExcelCode: string;
+    inputExcelCode = '1QUgtDPQjAqKw9OtyDxxMFdRYxO8jDdWhyD00wUzE4p8';
     giveNewExcelCode = false;
     excelLoadError: boolean;
     saveExcelSuccess = false;
     defaultColDef: any;
+    embedUrl = '';
 
 
     constructor(public gdata: GoogleAuthService,
@@ -56,6 +57,7 @@ export class TableComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.embedUrl = `https://docs.google.com/spreadsheets/d/1QUgtDPQjAqKw9OtyDxxMFdRYxO8jDdWhyD00wUzE4p8/edit#gid=0`
         this.generateColumns();
         this.model.sheetId = this.googleSheetAccessToken;
         this.model.range = this.googleSheetRange;
@@ -64,6 +66,7 @@ export class TableComponent implements OnInit {
         if (localStorage.getItem('excelCode')) {
             this.inputExcelCode = localStorage.getItem('excelCode');
             this.googleSheetAccessToken = localStorage.getItem('excelCode');
+            console.log(this.embedUrl);
         }
         this.defaultColDef = {
             resizable: true,
@@ -132,6 +135,12 @@ export class TableComponent implements OnInit {
 
     onDateSelect($event: NgbDate) {
         this.trainingDate = moment($event.year + '-' + $event.month + '-' + $event.day, "YYYY-MM-DD");
+    }
+
+    getSelectedEmail() {
+        return this.selectedStudentRows.map(student => {
+                return student._email;
+            }).join(', ');
     }
 
     saveExcelCode() {

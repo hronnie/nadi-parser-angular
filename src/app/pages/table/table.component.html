@@ -30,45 +30,45 @@
 </div>
 
 <ng-container *ngIf="isSignedIn">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card" *ngIf="googleSheetAccessToken">
-                <div class="card-header">
-                    <h4 class="card-title">Találtam megadott excel kódot, de ha szeretnél egy másikat megadni, akkor a gombra kattintva megteheted</h4>
-                    <button type="submit" class="btn btn-primary mb-2"
-                            (click)="newExcelCode()">
-                        Új excel kód megadása
-                    </button>
-                </div>
-            </div>
-            <div class="card" *ngIf="!googleSheetAccessToken || giveNewExcelCode">
-                <div class="card-header">
-                    <h4 class="card-title">Kérlek add meg az google sheet elérhetőségét (Előfordul, hogy már megadtad, de a böngésző 'elvesztette')</h4>
-                </div>
-                <div class="card-body">
-                    Ezt úgy tudod megtenni, hogy először is nyisd meg azt a google sheet-et, ami tartalmazza
-                    a tanítványokat (a régi rendszerből ki van exportálva)<br/>
-                    Ezután a linkjéből másold ki a /d/ és /edit közti kódot ahogy a következő kiemelt részben látod:
-                    <div class="alert alert-dark dark-font" role="alert">
-                        https://docs.google.com/spreadsheets/d/<b>1isdfsdfsdfasdfsadfsdafAAyzFWb1DemY</b>/edit#gid=0
-                    </div>
-                    <div class="form-group row">
-                        <label for="inputExcelCode" class="col-sm-2 col-form-label">Google sheet kódja</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputExcelCode" placeholder="Excel kód" [(ngModel)]="inputExcelCode">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mb-2"
-                            (click)="saveExcelCode()">
-                        Excel kód mentése
-                    </button>
-                    <div class="alert alert-success" role="alert" *ngIf="saveExcelSuccess">
-                        Sikerült elmenteni az excel kódot
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--            <div class="card" *ngIf="googleSheetAccessToken">-->
+<!--                <div class="card-header">-->
+<!--                    <h4 class="card-title">Találtam megadott excel kódot, de ha szeretnél egy másikat megadni, akkor a gombra kattintva megteheted</h4>-->
+<!--                    <button type="submit" class="btn btn-primary mb-2"-->
+<!--                            (click)="newExcelCode()">-->
+<!--                        Új excel kód megadása-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="card" *ngIf="!googleSheetAccessToken || giveNewExcelCode">-->
+<!--                <div class="card-header">-->
+<!--                    <h4 class="card-title">Kérlek add meg az google sheet elérhetőségét (Előfordul, hogy már megadtad, de a böngésző 'elvesztette')</h4>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    Ezt úgy tudod megtenni, hogy először is nyisd meg azt a google sheet-et, ami tartalmazza-->
+<!--                    a tanítványokat (a régi rendszerből ki van exportálva)<br/>-->
+<!--                    Ezután a linkjéből másold ki a /d/ és /edit közti kódot ahogy a következő kiemelt részben látod:-->
+<!--                    <div class="alert alert-dark dark-font" role="alert">-->
+<!--                        https://docs.google.com/spreadsheets/d/<b>1isdfsdfsdfasdfsadfsdafAAyzFWb1DemY</b>/edit#gid=0-->
+<!--                    </div>-->
+<!--                    <div class="form-group row">-->
+<!--                        <label for="inputExcelCode" class="col-sm-2 col-form-label">Google sheet kódja</label>-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text" class="form-control" id="inputExcelCode" placeholder="Excel kód" [(ngModel)]="inputExcelCode">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-primary mb-2"-->
+<!--                            (click)="saveExcelCode()">-->
+<!--                        Excel kód mentése-->
+<!--                    </button>-->
+<!--                    <div class="alert alert-success" role="alert" *ngIf="saveExcelSuccess">-->
+<!--                        Sikerült elmenteni az excel kódot-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <ng-container *ngIf="googleSheetAccessToken">
         <div class="row">
@@ -101,6 +101,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Tanfolyamok</h4>
+
                         <small class="text-muted">Először válaszd ki, hogy melyik tanfolyamra szeretnél meghívókat küldeni.</small>
                         <div class="alert alert-danger dark-font" role="alert" *ngIf="excelLoadError" >
                             Sajnos nem sikerült az excel adatokat betölteni, valami Google-ös hiba miatt. Ez általában egyből eltűnik,
@@ -108,6 +109,9 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div>
+
+                        </div>
                         <div class="select-training-drop-down">
                             <ng-select
                                     (change)="onTrainingSelect($event)"
@@ -137,7 +141,7 @@
                 </div>
             </div>
         </div>
-
+        <button type="button" class="btn btn-info sign-out-button" (click)="loadSheetData()">Frissítés</button>
         <ng-container *ngIf="selectedStudentRows?.length > 0">
             <div class="row">
                 <div class="col-md-12">
@@ -152,6 +156,22 @@
                             </textarea>
                             <button type="button" (click)="copyInputMessage(selectedEmailsTextarea)"
                                     class="btn btn-default">Másolás (ctrl - c)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Tanítványok google sheet</h4>
+                            <small class="text-muted">Ha változtatsz valamit, akkor kattints a frissítés gombra, hogy a felső táblázat is frissítse magát</small>
+                        </div>
+                        <div class="card-body">
+                            <iframe src="https://docs.google.com/spreadsheets/d/1QUgtDPQjAqKw9OtyDxxMFdRYxO8jDdWhyD00wUzE4p8/edit#gid=0" width="100%" height="800"></iframe>
                         </div>
                     </div>
                 </div>
