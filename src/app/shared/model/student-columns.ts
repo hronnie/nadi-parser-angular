@@ -92,7 +92,7 @@ export class StudentColumns {
             },
             {
                 field: XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL,
-                headerName: '12.A harmonizálás magasiskolája',
+                headerName: '12. A Mágia eszközei',
                 valueFormatter: dateTimeFormatter,
             },
             {
