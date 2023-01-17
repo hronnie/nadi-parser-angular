@@ -18,203 +18,290 @@ export class StudentFilterService {
                 return origData;
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_ONE: {
+            case XLS_FIELD_NAMES.LEVEL_1_KEZDO_MODUL: {
                 return origData.filter(item => {
                     return !this.isUserNotDisabled(item);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_TWO: {
+            case XLS_FIELD_NAMES.LEVEL_2_ALAP_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_ONE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_TWO])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_A])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B_2])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_ONE], LEVEL_WAITING_TIMES.LEVEL_TWO)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_1_KEZDO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_2_ALAP_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_3_HARMONIA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_4_CHI_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_1_KEZDO_MODUL], LEVEL_WAITING_TIMES.LEVEL_2_ALAP_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_THREE: {
+            case XLS_FIELD_NAMES.LEVEL_3_HARMONIA_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_TWO])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_A])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B_2])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_TWO], LEVEL_WAITING_TIMES.LEVEL_THREE)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_2_ALAP_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_3_HARMONIA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_4_CHI_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_2_ALAP_MODUL], LEVEL_WAITING_TIMES.LEVEL_3_HARMONIA_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_THREE_C: {
+            case XLS_FIELD_NAMES.LEVEL_4_CHI_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE_C])
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_3_HARMONIA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_4_CHI_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_3_HARMONIA_MODUL], LEVEL_WAITING_TIMES.LEVEL_4_CHI_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_FOUR_A: {
+            case XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_A])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B_2])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_THREE], LEVEL_WAITING_TIMES.LEVEL_FOUR_A)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_4_CHI_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_4_CHI_MODUL], LEVEL_WAITING_TIMES.LEVEL_5_KARMA_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_FOUR_B: {
+            case XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_A])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B_2])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_FOUR_A], LEVEL_WAITING_TIMES.LEVEL_FOUR_B)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL], LEVEL_WAITING_TIMES.LEVEL_6_FORMAZAS_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_FOUR_B_2: {
+            case XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B_2])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_FOUR_B], LEVEL_WAITING_TIMES.LEVEL_FOUR_B_2)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL], LEVEL_WAITING_TIMES.LEVEL_7_ELETUT_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_FIVE: {
+            case XLS_FIELD_NAMES.LEVEL_8_SPIRITUALIS_ASSZERTIVITAS_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_FOUR_B], LEVEL_WAITING_TIMES.LEVEL_FIVE)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_8_SPIRITUALIS_ASSZERTIVITAS_MODUL]);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_SIX: {
+            case XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_FIVE], LEVEL_WAITING_TIMES.LEVEL_SIX)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL], LEVEL_WAITING_TIMES.LEVEL_9_HALADO_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_SEVEN: {
+            case XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_SIX], LEVEL_WAITING_TIMES.LEVEL_SEVEN)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL], LEVEL_WAITING_TIMES.LEVEL_10_SZAKRALIS_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_EIGHT_1: {
+            case XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_EIGHT_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_SEVEN], LEVEL_WAITING_TIMES.LEVEL_EIGHT_1)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL], LEVEL_WAITING_TIMES.LEVEL_11_MATRIX_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_TK_1: {
+            case XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_11_MATRIX_MODUL], LEVEL_WAITING_TIMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_TK_2: {
+            case XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FOUR_B])
-                        && this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_FIVE])
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_12_HARMONIZALAS_MAGASISKOLAJA_MODUL], LEVEL_WAITING_TIMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_TK_3: {
+            case XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SIX])
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_13_UNIVERZALIS_ESZKOZOK_I], LEVEL_WAITING_TIMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_TK_4: {
+            case XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_SEVEN])
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_14_UNIVERZALIS_ESZKOZOK_II], LEVEL_WAITING_TIMES.LEVEL_15_TERMESZETI_EROK_I);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_UTI_1: {
+            case XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_THREE])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_THREE], LEVEL_WAITING_TIMES.LEVEL_UTI_1)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I])
+                        && !this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_16_TERMESZETI_EROK_II])
+                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_15_TERMESZETI_EROK_I], LEVEL_WAITING_TIMES.LEVEL_16_TERMESZETI_EROK_II);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_UTI_2: {
+            case XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_1: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_UTI_1])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_UTI_1], LEVEL_WAITING_TIMES.LEVEL_UTI_2)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_3_HARMONIA_MODUL]);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_UTI_3: {
+            case XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_2: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_UTI_2])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_UTI_2], LEVEL_WAITING_TIMES.LEVEL_UTI_3)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_1]);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_UTI_3_PLUS: {
+            case XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_3: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_UTI_3])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_UTI_3], LEVEL_WAITING_TIMES.LEVEL_UTI_3_PLUS)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_2]);
                 })
                 break;
             }
-            case XLS_FIELD_NAMES.LEVEL_UTI_4: {
+            case XLS_FIELD_NAMES.LEVEL_OPT_FORMAZAS2: {
                 return origData.filter(item => {
-                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_UTI_3_PLUS])
-                        && this.isWaitingTimeOk(item[XLS_FIELD_NAMES.LEVEL_UTI_3_PLUS], LEVEL_WAITING_TIMES.LEVEL_UTI_4)
-                        && !this.isUserNotDisabled(item);
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_6_FORMAZAS_MODUL])
+                        && this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL]);
+                })
+                break;
+            }
+            case XLS_FIELD_NAMES.LEVEL_OPT_KARMA2: {
+                return origData.filter(item => {
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_7_ELETUT_MODUL])
+                        && this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_5_KARMA_MODUL]);
+                })
+                break;
+            }
+            case XLS_FIELD_NAMES.LEVEL_OPT_KARMA3: {
+                return origData.filter(item => {
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL])
+                        && this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_KARMA2]);
+                })
+                break;
+            }
+            case XLS_FIELD_NAMES.LEVEL_OPT_KARMA4: {
+                return origData.filter(item => {
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_KARMA3]);
+                })
+                break;
+            }
+            case XLS_FIELD_NAMES.LEVEL_OPT_MESTERKULCS_1: {
+                return origData.filter(item => {
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_10_SZAKRALIS_MODUL])
+                        && this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_2]);
+                })
+                break;
+            }
+            case XLS_FIELD_NAMES.LEVEL_OPT_MESTERKULCS_2: {
+                return origData.filter(item => {
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_MESTERKULCS_1])
+                        && this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_3]);
+                })
+                break;
+            }
+            case XLS_FIELD_NAMES.LEVEL_OPT_TUDATOS_LEPESEK_WS: {
+                return origData.filter(item => {
+                        return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_OPT_WORKSHOP_1]);
+                })
+                break;
+            }
+            case XLS_FIELD_NAMES.LEVEL_OPT_ECO_KONZULTANS: {
+                return origData.filter(item => {
+                    return this.isFormatLevelDateValid(item[XLS_FIELD_NAMES.LEVEL_9_HALADO_MODUL]);
                 })
                 break;
             }

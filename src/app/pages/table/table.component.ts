@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {GoogleAuthService} from '../../shared/services/google-auth.service';
 import {SimpleRequest} from '../../shared/model/simple-request';
 import {StudentColumns} from '../../shared/model/student-columns';
@@ -134,17 +134,6 @@ export class TableComponent implements OnInit {
         this.trainingDate = moment($event.year + '-' + $event.month + '-' + $event.day, "YYYY-MM-DD");
     }
 
-    // sendEmail() {
-    //     const emails = this.selectedStudentRows.map(item => item._email);
-    //     for (const email of emails) {
-    //         this.sendOneEmail(email, '', '');
-    //     }
-    // }
-
-    // sendOneEmail(toEmail: string, emailSubject: string, emailBody: string) {
-    //
-    // }
-
     saveExcelCode() {
         localStorage.setItem('excelCode', this.inputExcelCode);
         this.giveNewExcelCode = false;
@@ -153,12 +142,6 @@ export class TableComponent implements OnInit {
 
     newExcelCode() {
         this.giveNewExcelCode = true;
-    }
-
-    getSelectedEmail() {
-        return this.selectedStudentRows.map(student => {
-            return student._email;
-        }).join(', ');
     }
 
     copyInputMessage(userinput: any) {
